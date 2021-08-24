@@ -15,8 +15,6 @@
 	<div class="top">
 		<div class="sub">당신의 이야기를 읽어드릴게요</div>
 		<div class="title">Story Reader</div>
-		
-		<button onclick="location='login.jsp'">Login  > </button>
 		<button onclick="location='chooseInput.jsp'">Story Reader Start  > </button>
 	</div>
 	<div class="img">

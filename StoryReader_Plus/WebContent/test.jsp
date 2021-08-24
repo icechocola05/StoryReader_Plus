@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dto.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,20 +20,10 @@
 	<div class="head">
 		<span>Story Reader</span>
 	</div>
-	<div class="login-section">
-		<p class ="login-title">로그인</p>
-		<hr>
-		<form method="post" action="doLogin">
-		<label>아이디
-			<input type="text" class = "input-user" name="user_input_id" >
-		</label><br />
-		<label>비밀번호
-			<input type="password" class = "input-user" name="user_input_pw" >
-		</label><br />
-		
-		<button onclick="location='login.jsp'" class = "login-btn"> Login </button>
-	</form>
-	<button onclick="location='join.jsp'" class = "join-btn"> 회원가입하기 </button>
+	<div class="main">
+		<h3>테스트용 페이지입니다. </h3>
+		<%User user = (User)session.getAttribute("currUser"); %>
+		<p>사용자 : <%=user.getUserName() %></p>
 	</div>		
 </body>
 </html> 

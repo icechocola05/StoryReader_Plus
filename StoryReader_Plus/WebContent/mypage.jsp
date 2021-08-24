@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,23 +18,7 @@
 </head>
 <body>
 	<div class="head">
-		<span>Story Reader</span>
+		<span class = "title-section">Story Reader</span>
 	</div>
-	<div class="login-section">
-		<p class ="login-title">로그인</p>
-		<hr>
-		<form method="post" action="doLogin">
-		<label>아이디
-			<input type="text" class = "input-user" name="user_input_id" >
-		</label><br />
-		<label>비밀번호
-			<input type="password" class = "input-user" name="user_input_pw" >
-		</label><br />
-		
-		<button onclick="location='login.jsp'" class = "login-btn"> Login </button>
-	</form>
-	<button onclick="location='join.jsp'" class = "join-btn"> 회원가입하기 </button>
-	</div>		
+	<h2>마이페이지</h2>
 </body>
-</html> 
-
