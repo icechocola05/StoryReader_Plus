@@ -20,7 +20,9 @@ public class User {
 	public void setUserName(String user_name) {
 		this.user_name = user_name;
 	}
-	
+	public int getUserId() {
+		return this.user_id;
+	}
 	public int getVoiceId() {
 		return this.user_id;
 	}
