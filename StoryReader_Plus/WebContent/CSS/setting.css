@@ -92,28 +92,28 @@ form {
 
 svg[data-icon='noto:angry-face'] {
 	position: relative;
-	font-size: 90px;
+	font-size: 50px;
 	z-index: 1;
 	pointer-events: none;
 }
 
 svg[data-icon='noto:crying-face'] {
 	position: relative;
-	font-size: 90px;
+	font-size: 50px;
 	z-index: 1;
 	pointer-events: none;
 }
 
 svg[data-icon='noto:neutral-face'] {
 	position: relative;
-	font-size: 90px;
+	font-size: 50px;
 	z-index: 1;
 	pointer-events: none;
 }
 
 svg[data-icon='noto:grinning-face-with-smiling-eyes'] {
 	position: relative;
-	font-size: 90px;
+	font-size: 50px;
 	z-index: 1;
 	pointer-events: none;
 }
