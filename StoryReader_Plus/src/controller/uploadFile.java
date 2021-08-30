@@ -75,7 +75,7 @@ public class uploadFile extends HttpServlet {
 		request.setAttribute("title", title); //책 제목
 		request.setAttribute("mainTxt", mainTxt); //책 본문
 		
-    	RequestDispatcher rd = request.getRequestDispatcher("/fileConfirm.jsp");
+    	RequestDispatcher rd = request.getRequestDispatcher("/confirmFile.jsp");
         rd.forward(request, response);
     }
 }

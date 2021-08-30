@@ -20,7 +20,8 @@ public class SettingModel {
 				Voice voice = new Voice();
 				voice.setVoiceId(rs.getInt("voice_id"));
 				voice.setVoiceName(rs.getString("voice_name"));
-				voice.setVoiceKrName(rs.getString("voice_kr_name"));
+				voice.setVoiceKrName(rs.getString("voice_name_kr"));
+				voice.setVoiceColor(rs.getString("voice_color"));
 				voiceList.add(voice);
 			}
 		} catch (SQLException e) {
@@ -41,7 +42,7 @@ public class SettingModel {
 				Emotion emotion = new Emotion();
 				emotion.setEmotionId(rs.getInt("emotion_id"));
 				emotion.setEmotionName(rs.getString("emotion_name"));
-				emotion.setEmotionKrName(rs.getString("emotion_kr_name"));
+				emotion.setEmotionKrName(rs.getString("emotion_name_kr"));
 				emotionList.add(emotion);
 			}
 		} catch (SQLException e) {

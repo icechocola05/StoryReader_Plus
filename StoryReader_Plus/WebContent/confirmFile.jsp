@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="head.html" %>
+<head>
+	<link rel="stylesheet" href="CSS/textInput.css">
+</head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<%
@@ -23,13 +26,10 @@
 			<span id="header">텍스트를 확인해주세요!</span> <br>
 			
 			<div class="content">
-				<form method="Post" action="ConfirmScript">	
+				<form method="Post" action="confirmScript">	
 					<div class="context-text">
 						<label for='title'>제목</label>
 						<input type="text" id="title" name="title" size=53 value="<%=title%>" placeholder="  제목을 입력해주세요.  ">
-						<br>
-						<label for='author'>작가</label>
-						<input type="text" id="author" name="author" size=53 placeholder="  작가의 이름을 입력해주세요." />
 						<br><br>
 						<textarea rows="11" cols="63" id="mainTxt" name="mainTxt"><%=mainTxt%></textarea>
 					</div>	

@@ -6,6 +6,9 @@
 <html>
 <html>
 <%@ include file="head.html" %>
+<head>
+	<link rel="stylesheet" href="CSS/fileInput.css">
+</head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="main">

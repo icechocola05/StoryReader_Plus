@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="head.html" %>
+<head>
+	<link rel="stylesheet" href="CSS/chooseInput.css">
+</head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="main">

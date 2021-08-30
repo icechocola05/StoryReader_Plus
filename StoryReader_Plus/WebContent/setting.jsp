@@ -14,6 +14,9 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="head.html" %>
+<head>
+	<link rel="stylesheet" href="CSS/setting.css">	
+</head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="main">
@@ -23,9 +26,9 @@
 	</div>
 	<% 
 		//저장한 이야기, 문장, 화자 정보 받아오기
-		ArrayList<String> speaker = (ArrayList<String>) session.getAttribute("speaker");
+		ArrayList<String> speaker = (ArrayList<String>) session.getAttribute("speaker_list");
 		ArrayList<String> speakerType = (ArrayList<String>) session.getAttribute("speakerType");
-		ArrayList<String> sentence = (ArrayList<String>) request.getAttribute("sentence");
+		ArrayList<String> sentence = (ArrayList<String>) request.getAttribute("sentence_list");
 		
 		
 		//DB의 Emotion, Voice 가져오기 + session에 저장

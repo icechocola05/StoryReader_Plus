@@ -11,7 +11,7 @@ import dto.Story;
 public class StoryDao {
 	
 	//Story 삽입
-	private final static String SQLST_INSERT_STORY = "INSERT INTO story (story_name, story_author) VALUES (?, ?)";
+	private final static String SQLST_INSERT_STORY = "INSERT INTO story (story_name, user_id) VALUES (?, ?)";
 	
 	//Story 삽입 성공 시 story 객체 return
 	public static Story insertStory(Connection con, String title, int user_id) throws SQLException {

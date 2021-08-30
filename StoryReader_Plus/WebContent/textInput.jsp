@@ -6,6 +6,9 @@
 <html>
 <html>
 <%@ include file="head.html" %>
+<head>
+	<link rel="stylesheet" href="CSS/textInput.css">
+</head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="main">
@@ -17,7 +20,7 @@
 			<span id="header">텍스트를 직접 입력해주세요!</span> <br>
 			
 			<div class="content">
-				<form method="Post" action="ConfirmScript">	
+				<form method="Post" action="confirmScript">	
 					<div class="context-text">
 						<label for='title'>제목</label>
 						<input type="text" id="title" name="title" size=53 placeholder="  제목을 입력해주세요.  "/>

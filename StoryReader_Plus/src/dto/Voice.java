@@ -4,6 +4,7 @@ public class Voice {
 	private int voice_id;
 	private String voice_name;
 	private String voice_kr_name;
+	private String voice_color;
 	
 	public Voice() {}
 	
@@ -18,6 +19,9 @@ public class Voice {
 	public void setVoiceKrName(String voice_kr_name) {
 		this.voice_kr_name = voice_kr_name;
 	}
+	public void setVoiceColor(String voice_color) {
+		this.voice_color = voice_color;
+	}
 	
 	public int getVoiceId() {
 		return this.voice_id;
@@ -29,5 +33,9 @@ public class Voice {
 	
 	public String getVoiceKrName() {
 		return this.voice_kr_name;
+	}
+	
+	public String getVoiceColor() {
+		return this.voice_color;
 	}
 }

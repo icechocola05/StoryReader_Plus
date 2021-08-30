@@ -1,26 +1,25 @@
 package dto;
 
 public class Sentence {
-	private String sent_txt;
-	private String sent_speaker;
+	private String sentence;
+	private String speaker;
 	private int story_id;
 	private int voice_id;
 	private int emotion_id;
-	private float sent_intensity;
-	
+	private float intensity;
 	private String voice_name;
 	private String emotion_name;
 	
 	public Sentence() {}
 	
-	public Sentence(String sent_txt, String sent_speaker, int story_id, int voice_id, int emotion_id, 
-			float sent_intensity) {
-		this.sent_txt = sent_txt;
-		this.sent_speaker = sent_speaker;
+	public Sentence(String sentence, String speaker, int story_id, int voice_id, int emotion_id, 
+			float intensity) {
+		this.sentence = sentence;
+		this.speaker = speaker;
 		this.story_id = story_id;
 		this.voice_id = voice_id;
 		this.emotion_id = emotion_id;
-		this.sent_intensity = sent_intensity;
+		this.intensity = intensity;
 	}
 	
 	public void setVoiceName(String voice_name) {
@@ -32,11 +31,11 @@ public class Sentence {
 	}
 	
 	public String getSentence() {
-		return sent_txt;
+		return sentence;
 	}
 	
 	public String getSpeaker() {
-		return sent_speaker;
+		return speaker;
 	}
 	
 	public int getStoryId() {
@@ -52,7 +51,7 @@ public class Sentence {
 	}
 	
 	public float getIntensity() {
-		return sent_intensity;
+		return intensity;
 	}
 	
 	public String getVoiceName() {
