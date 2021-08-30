@@ -42,33 +42,12 @@
 	%>
 	
 	<form method="Post" action="setVoiceEmotion" >
-	<div class="set">
-		<div class="speakers" >
-			<div class="row">
-				<% 
-					int speakerTypeSize = speakerType.size();
-					for(int i=0; i<speakerType.size(); i++) {
-				%>
-				<div class="col-sm-3">
-					<span id='speakerType<%=i%>' class="fs-1"> <%= speakerType.get(i) %> </span>
-				</div>
-				<div class="col-sm-7">
-					<!-- Voice Setting -->
-					<select id='voice<%=i%>' class='form-select fs-2' name='voice<%=i%>' >
-						<%
-							int voiceSetSize = voiceSet.size();
-							for (int j=0; j<voiceSetSize; j++)  { %> 
-								<option value=<%= voiceSet.get(j).getVoiceName() %>><%= voiceSet.get(j).getVoiceKrName() %></option>
-						<% } %>
-					</select> <br>
-				</div>
-				<% } %>
-			</div>
-		</div>
+	<div class="settings">
 		
 		<br>
-			<%	//문장 수 만큼 div 생성
-				int len = sentence.size();
+			<%
+				//문장 수 만큼 div 생성
+				int len = sentence.size(); 
 				for(int i=0; i<len; i++) { 
 			%>
 			
@@ -80,33 +59,45 @@
 						<span id='speaker<%=i%>'> <%= speaker.get(i) %> </span>
 					</div>
 					
-					<!-- emotion option 붙이기-->
+					<!-- emotion 붙이기-->
 					<div class="col-md-auto text-center" style="margin: 1%;">
 						<label id="emotionFace<%=i%>">
 							<span class='iconify' data-inline='false' data-icon='noto:angry-face' ></span>
 						</label>
-						<select class='form-select fs-2' id='emotion<%=i%>' name='emotion<%=i%>' onchange="changeEmotion(<%=i%>)">
-			               <% for (int ls=0; ls<emotionSet.size(); ls++)  { %> 
-							<option value=<%= emotionSet.get(ls).getEmotionName() %>><%= emotionSet.get(ls).getEmotionKrName() %></option>
-			               <% } %>
-			            </select>
 		            </div>
 					
 					<!-- emotion intensity 붙이기-->
 					<div class="col-2 text-center" style="margin: 1%;">
-					<input type="range"name="range<%=i%>" min="0" max ="1" step="0.1" value="0.5">
+						<input type="range"name="range<%=i%>" min="0" max ="1" step="0.1" value="0.5">
 					</div>
 					
 					<!-- sentence 붙이기-->
 					<div class="col-6 text-center " style="margin: 1%;">
-					<textarea id="sentence<%=i%>" class="col-7 form-control fs-1" name="sentence<%=i%>"><%= sentence.get(i) %></textarea>
+						<textarea id="sentence<%=i%>" class="col-7 form-control fs-1" name="sentence<%=i%>"><%= sentence.get(i) %></textarea>
+					</div>
+					
+					<!-- checkbox 붙이기 -->
+					<div class="col-md-auto text-center" style="margin: 1%;">
+						<input type="checkbox" name="settingBox" value="settingBox<%=i%>">
 					</div>
 				</div>
+				
 			</div>
 		
 			<% 	} //for문
 				%>
 		</div>
+			<div class="sentence_options">
+				<select class='form-select fs-2' id='emotion' name='emotion'>
+			               <% for (int ls=0; ls<emotionSet.size(); ls++)  { %> 
+							<option value=<%= emotionSet.get(ls).getEmotionName() %>><%= emotionSet.get(ls).getEmotionKrName() %></option>
+			               <% } %>
+			    </select>
+			</div>
+			<div class="checkBtn">
+				<input type="button" name="checkSenteceBtn" value="전체 선택" onClick="this.value=selectAll()">
+				
+			</div>
 			<div class="btn">
 				<button type="SUBMIT" class="submit-btn"> 다음 단계로 >  </button>
 			</div>
@@ -116,6 +107,27 @@
 
 
 <script>
+
+		var isChecked = false;
+
+		function selectAll() {
+			const checkboxes = document.getElementsByName('settingBox');
+			if (isChecked == false) { //전체 체크하기
+				checkboxes.forEach((checkbox) => {
+					checkbox.checked = true;
+				})
+				isChecked = true;
+				return "체크 해제";
+			}
+			else { //전체 체크 해제하기
+				checkboxes.forEach((checkbox) => {
+					checkbox.checked = false;
+				})
+				isChecked = false;
+				return "전체 체크";
+			}
+			
+		}
 
 		function changeEmotion(i) {
 			var element = document.getElementById("emotionFace" + i);

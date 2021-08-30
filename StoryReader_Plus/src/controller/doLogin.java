@@ -45,7 +45,6 @@ public class doLogin extends HttpServlet {
 			else { //login success
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('로그인 성공'); location.href='../StoryReader_Plus/chooseInput.jsp';</script>");
-				session.setAttribute("loginId", currUser.getUserLoginId());
 				session.setAttribute("currUser", currUser);
 				out.flush();
 			}
