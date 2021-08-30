@@ -1,4 +1,6 @@
-@charset "UTF-8";	
+@charset "UTF-8";
+
+	
 
 html,body {
 	background-color: #FFFFFF;
@@ -12,6 +14,7 @@ html,body {
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 	text-align: center;
 }
+
 .head .title-section{
 	float:center;
 	margin-right:-10%;
@@ -42,7 +45,6 @@ html,body {
 	letter-spacing: -0.02em;
 	color: #FFFFFF;
 }
-
 .main {
 	background-color: #FFFFFF;
 }
@@ -55,16 +57,16 @@ html,body {
 	height: 10%;
 }
 
+/* ------------------------------ */
 
-
-.select {
+.input {
 	width: 65%;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.select span {
+.input #header {
 	font-family: Noto Sans KR;
 	font-style: normal;
 	font-weight: bold;
@@ -76,32 +78,69 @@ html,body {
 	
 }
 
-.select .input_btn1 {
+.content {
+	padding-top: 2.5%;
 	
-	margin-top: 5%;
-	width: inherit;
-	padding: 2% 20% 2% 20%;
-	background-color: #97C6EE;
-	border: none;
+}
+
+.content-text {
+	width: 60%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+label {
+	padding-right: 1.5%;
 	
 	font-family: Noto Sans;
 	font-style: normal;
 	font-weight: 600;
-	font-size: 33px;
-	line-height: 48px;
+	font-size: 25px;
+	line-height: 34px;
 	/* identical to box height */
 	
 	text-align: center;
 	
-	color: #FFFFFF;
+	color: #000000;
 }
 
-.select .input_btn2 {
+#title, #author, #mainTxt {
+	border: 2px solid #C4C4C4;
+	box-sizing: border-box;
+	border-radius: 20px;
+	padding: 0.5%;
+	margin: 1%;
+		
+	font-family: Noto Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 25px;
+	line-height: 34px;
+	/* identical to box height */
 	
-	margin-top: 5%;
+}
+
+.content #sub {
+	padding-top: 0%;
+	font-family: Noto Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 5px;
+	text-align: center;
+	
+	color: #C4C4C4;
+}
+
+
+
+#submit-btn {
+	
+	margin-top: 2%;
 	width: inherit;
 	padding: 2% 20% 2% 20%;
-	background-color: #BBBBBB;;
+	background-color: #97C6EE;
 	border: none;
 	
 	font-family: Noto Sans;
