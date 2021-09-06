@@ -62,22 +62,20 @@
 					</div>
 					
 					<!-- voice 붙이기 -->
-					
 					<div class="col-md-auto text-center" style="margin: 1%;">
 						<div class="voice<%=i%>" style="border:3px solid #ffb4b4; border-radius: 35%;"> 
 							<input type="text" style="display:none;" name="voiceVal<%=i%>" value="ema&nea">
 							
+							<!-- emotion 붙이기-->
 							<div class="col-md-auto text-center" style="margin: 1%;">
-								<label id="emotionFace<%=i%>">
-									<span class='iconify' data-inline='false' data-icon='noto:angry-face' ></span>
+								<label class="emotionFace<%=i%>">
+									<span class='iconify' data-inline='false' data-icon='noto:neutral-face' ></span>
+									<input type="text" style="display:none;" name="emotionVal<%=i%>" value="neutral">
 								</label>
 			           		</div>
 			           		
 						</div>
 					</div>
-					
-					<!-- emotion 붙이기-->
-					
 					
 					<!-- sentence 붙이기-->
 					<div class="col-6 text-center " style="margin: 1%;">
@@ -161,91 +159,85 @@
 						element[0].style.borderColor="#ffb4b4";
 						var target = document.getElementsByName('voiceVal' + num);
 						target[0].value = val;
-						alert(target[0].value);
 					}
 					if(val == "emd&ned") {
 						element[0].style.borderColor="#ffffb4";
 						var target = document.getElementsByName('voiceVal' + num);
 						target[0].value = val;
-						alert(target[0].value);
 					}
 					if(val == "neg") {
 						element[0].style.borderColor="#b4ffb4";
 						var target = document.getElementsByName('voiceVal' + num);
 						target[0].value = val;
-						alert(target[0].value);
 					}
 					if(val == "emh&nem") {
 						element[0].style.borderColor="#8cb4ff";
 						var target = document.getElementsByName('voiceVal' + num);
 						target[0].value = val;
-						alert(target[0].value);
 					}
 					if(val == "emh&nem") {
 						element[0].style.borderColor="#b4b4ff";
 						var target = document.getElementsByName('voiceVal' + num);
 						target[0].value = val;
-						alert(target[0].value);
 					}
 					if(val == "nep") {
 						element[0].style.borderColor="#ddb4ff";
 						var target = document.getElementsByName('voiceVal' + num);
 						target[0].value = val;
-						alert(target[0].value);
 					}
 				}
 			})
-		}		
-
-		function changeEmotion() {
+		}
+		
+		function changeEmotion(val) {
 			const checkboxes = document.getElementsByName('settingBox');
 			checkboxes.forEach((checkbox) => {
 				if(checkbox.checked == true) {
 					var num = checkbox.value;
-					var element = document.getElementById("emotionFace" + num);
+					var element = document.getElementsByClassName('emotionFace' + num);
+					var target = document.getElementsByName('emotionVal' + num);
+					element[0].parentNode.removeChild(element[0]);
+					alert(element);
 					
-					var target = document.getElementById("emotion" + i);
-					var val = target.options[target.selectedIndex].text;
-					var sentence = document.getElementsByName(sent)[0].value;
-					alert(sentence);
+					if(val == "neutral") {
+						var added = document.createElement('span');
+						added.setAttribute('class', 'iconify');
+						added.setAttribute('data-inline', 'false');
+						added.setAttribute('data-icon', 'noto:neutral-face');
+						element.appendChild(added);
+						target[0].value = val;
+						alert(target[0].value);
+					}
+					if(val == "happiness") {
+						var added = document.createElement('span');
+						added.setAttribute('class', 'iconify');
+						added.setAttribute('data-inline', 'false');
+						added.setAttribute('data-icon', 'noto:grinning-face-with-smiling-eyes');
+						document.querySelector('.emotionFace' + num).appendChild(added);
+						target[0].value = val;
+						alert(target[0].value);
+					}
+					if(val == "anger") {
+						var added = document.createElement('span');
+						added.setAttribute('class', 'iconify');
+						added.setAttribute('data-inline', 'false');
+						added.setAttribute('data-icon', 'noto:angry-face');
+						element.appendChild(added);
+						target[0].value = val;
+						alert(target[0].value);
+					}
+					if(val == "sadness") {
+						var added = document.createElement('span');
+						added.setAttribute('class', 'iconify');
+						added.setAttribute('data-inline', 'false');
+						added.setAttribute('data-icon', 'noto:crying-face');
+						target[0].value = val;
+						alert(target[0].value);
+					}
 				}
 			})
-			
-			
-			while( element.hasChildNodes()) {
-				element.removeChild(element.firstChild);
-			}
-			
-			if(val == "화남") {
-				var added = document.createElement('span');
-				added.setAttribute('class', 'iconify');
-				added.setAttribute('data-inline', 'false');
-				added.setAttribute('data-icon', 'noto:angry-face');
-				element.appendChild(added);
-			}
-			if(val == "슬픔") {
-				var added = document.createElement('span');
-				added.setAttribute('class', 'iconify');
-				added.setAttribute('data-inline', 'false');
-				added.setAttribute('data-icon', 'noto:crying-face');
-				element.appendChild(added);
-			}
-			if(val == "중립") {
-				var added = document.createElement('span');
-				added.setAttribute('class', 'iconify');
-				added.setAttribute('data-inline', 'false');
-				added.setAttribute('data-icon', 'noto:neutral-face');
-				element.appendChild(added);
-			}
-			if(val == "기쁨") {
-				var added = document.createElement('span');
-				added.setAttribute('class', 'iconify');
-				added.setAttribute('data-inline', 'false');
-				added.setAttribute('data-icon', 'noto:grinning-face-with-smiling-eyes');
-				element.appendChild(added);
-			}
-			
 		}
+
 </script>
 </body>
 
