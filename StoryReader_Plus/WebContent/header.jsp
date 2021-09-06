@@ -19,4 +19,6 @@
 	  		</c:choose>
 	  		<c:remove var="userId" scope="page" />
 		</span>
-	</div>
+</div>
+<script type="text/javascript" src="js/logout.js" charset="UTF-8"></script>
+	

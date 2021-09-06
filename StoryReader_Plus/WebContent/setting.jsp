@@ -61,13 +61,14 @@
 						<span id='speaker<%=i%>'> <%= speaker.get(i) %> </span>
 					</div>
 					
-					<!-- voice 붙이기 -->
-					
+					<!-- voice, emotion 붙이기 -->
 					<div class="col-md-auto text-center" style="margin: 1%;">
 						<div class="voice<%=i%>" style="border:3px solid #ffb4b4; border-radius: 35%;"> 
 							<input type="text" style="display:none;" name="voiceVal<%=i%>" value="ema&nea">
+							<input type="text" style="display:none;" name="emotionIntensityVal<%=i%>" value="0.5">
 							
 							<div class="col-md-auto text-center" style="margin: 1%;">
+							<input type="text" style="display:none;" name="emotionVal<%=i%>" value="neutral">
 								<label id="emotionFace<%=i%>">
 									<span class='iconify' data-inline='false' data-icon='noto:angry-face' ></span>
 								</label>
@@ -75,9 +76,6 @@
 			           		
 						</div>
 					</div>
-					
-					<!-- emotion 붙이기-->
-					
 					
 					<!-- sentence 붙이기-->
 					<div class="col-6 text-center " style="margin: 1%;">
@@ -88,6 +86,10 @@
 					<div class="col-md-auto text-center" style="margin: 1%;">
 						<input type="checkbox" name="settingBox" value="<%=i%>">
 					</div>
+					<!-- 미리듣기 버튼 붙이기 -->
+					<div class="col-md-auto text-center" style="margin: 1%;">
+						<input type="button" id="pre-listen" value="미리듣기" onclick="getPreListen(<%=i%>)">
+					</div>
 				</div>
 				
 			</div>
@@ -95,158 +97,44 @@
 			<% 	} //for문
 				%>
 		</div>
-			<div class="sentence_options container-fluid align-items-center">
-				음색
-				<select id='voice' class='form-select fs-2' name='voice' onchange="changeVoice(this.value)">
-					<%
-						int voiceSetSize = voiceSet.size();
-						for (int j=0; j<voiceSetSize; j++)  { %> 
-							<option value=<%= voiceSet.get(j).getVoiceName() %>><%= voiceSet.get(j).getVoiceKrName() %></option>
-					<% } %>
-				</select>
-				감정 
-				<select class='form-select fs-2' id='emotion' name='emotion' onchange="changeEmotion(this.value)">
-			               <% for (int ls=0; ls<emotionSet.size(); ls++)  { %> 
-							<option value=<%= emotionSet.get(ls).getEmotionName() %>><%= emotionSet.get(ls).getEmotionKrName() %></option>
-			               <% } %>
-			    </select>
-			    세기 
-				<div class="col-2 text-center" style="margin: 1%;">
-					<input type="number" name="range" min="0" max ="1" step="0.1" value="0.5">
-				</div>
+		<div class="sentence_options container-fluid align-items-center">
+			음색
+			<select id='voice' class='form-select fs-2' name='voice' onchange="changeVoice(this.value)">
+				<%
+					int voiceSetSize = voiceSet.size();
+					for (int j=0; j<voiceSetSize; j++)  { %> 
+						<option value=<%= voiceSet.get(j).getVoiceName() %>><%= voiceSet.get(j).getVoiceKrName() %></option>
+				<% } %>
+			</select>
+			감정 
+			<select class='form-select fs-2' id='emotion' name='emotion' onchange="changeEmotion()">
+		              <% for (int ls=0; ls<emotionSet.size(); ls++)  { %> 
+						<option value=<%= emotionSet.get(ls).getEmotionName() %>><%= emotionSet.get(ls).getEmotionKrName() %></option>
+		               <% } %>
+		    </select>
+		    세기 
+			<div class="col-2 text-center" style="margin: 1%;">
+				<input type="number" name="range" min="0" max ="1" step="0.1" value="0.5">
+			</div>
 			    
-			</div>
-			<div class="checkBtn">
-				<input type="button" name="checkSenteceBtn" value="전체 선택" onClick="this.value=selectAll()">
-			</div>
+		</div>
 			
-			<div class="btn">
-				<button type="SUBMIT" class="submit-btn"> 다음 단계로 >  </button>
-			</div>
-	</form>
-		<br>
-		
-
-
-<script>
-
-		var isChecked = false;
-		
-		function selectAll() {
-			const checkboxes = document.getElementsByName('settingBox');
-			if (isChecked == false) { //전체 체크하기
-				checkboxes.forEach((checkbox) => {
-					checkbox.checked = true;
-				})
-				isChecked = true;
-				return "체크 해제";
-			}
-			else { //전체 체크 해제하기
-				checkboxes.forEach((checkbox) => {
-					checkbox.checked = false;
-				})
-				isChecked = false;
-				return "전체 체크";
-			}
-		}
-		
-		function changeVoice(val) {
-			const checkboxes = document.getElementsByName('settingBox');
-			checkboxes.forEach((checkbox) => {
-				if(checkbox.checked == true) {
-					var num = checkbox.value;
-					var element = document.getElementsByClassName('voice' + num);
-					
-					if(val == "ema&nea") {
-						element[0].style.borderColor="#ffb4b4";
-						var target = document.getElementsByName('voiceVal' + num);
-						target[0].value = val;
-						alert(target[0].value);
-					}
-					if(val == "emd&ned") {
-						element[0].style.borderColor="#ffffb4";
-						var target = document.getElementsByName('voiceVal' + num);
-						target[0].value = val;
-						alert(target[0].value);
-					}
-					if(val == "neg") {
-						element[0].style.borderColor="#b4ffb4";
-						var target = document.getElementsByName('voiceVal' + num);
-						target[0].value = val;
-						alert(target[0].value);
-					}
-					if(val == "emh&nem") {
-						element[0].style.borderColor="#8cb4ff";
-						var target = document.getElementsByName('voiceVal' + num);
-						target[0].value = val;
-						alert(target[0].value);
-					}
-					if(val == "emh&nem") {
-						element[0].style.borderColor="#b4b4ff";
-						var target = document.getElementsByName('voiceVal' + num);
-						target[0].value = val;
-						alert(target[0].value);
-					}
-					if(val == "nep") {
-						element[0].style.borderColor="#ddb4ff";
-						var target = document.getElementsByName('voiceVal' + num);
-						target[0].value = val;
-						alert(target[0].value);
-					}
-				}
-			})
-		}		
-
-		function changeEmotion() {
-			const checkboxes = document.getElementsByName('settingBox');
-			checkboxes.forEach((checkbox) => {
-				if(checkbox.checked == true) {
-					var num = checkbox.value;
-					var element = document.getElementById("emotionFace" + num);
-					
-					var target = document.getElementById("emotion" + i);
-					var val = target.options[target.selectedIndex].text;
-					var sentence = document.getElementsByName(sent)[0].value;
-					alert(sentence);
-				}
-			})
+		<div class="checkBtn">
+			<input type="button" name="checkSenteceBtn" value="전체 선택" onClick="this.value=selectAll()">
+			<input type="button" name="uncheckSenteceBtn" value="선택 취소" onClick="this.value=unselect()">
+		</div>
+		<div class="audio">
+			<audio id='player' autoplay controls>
+				<source id = "pre-listen-audio" src="" type="audio/wav">
+			</audio>
+		</div>
 			
-			
-			while( element.hasChildNodes()) {
-				element.removeChild(element.firstChild);
-			}
-			
-			if(val == "화남") {
-				var added = document.createElement('span');
-				added.setAttribute('class', 'iconify');
-				added.setAttribute('data-inline', 'false');
-				added.setAttribute('data-icon', 'noto:angry-face');
-				element.appendChild(added);
-			}
-			if(val == "슬픔") {
-				var added = document.createElement('span');
-				added.setAttribute('class', 'iconify');
-				added.setAttribute('data-inline', 'false');
-				added.setAttribute('data-icon', 'noto:crying-face');
-				element.appendChild(added);
-			}
-			if(val == "중립") {
-				var added = document.createElement('span');
-				added.setAttribute('class', 'iconify');
-				added.setAttribute('data-inline', 'false');
-				added.setAttribute('data-icon', 'noto:neutral-face');
-				element.appendChild(added);
-			}
-			if(val == "기쁨") {
-				var added = document.createElement('span');
-				added.setAttribute('class', 'iconify');
-				added.setAttribute('data-inline', 'false');
-				added.setAttribute('data-icon', 'noto:grinning-face-with-smiling-eyes');
-				element.appendChild(added);
-			}
-			
-		}
-</script>
+		<div class="btn">
+			<button type="SUBMIT" class="submit-btn"> 다음 단계로 >  </button>
+		</div>
+	
+	</form><br>
+<script type="text/javascript" src="js/setting.js" charset="UTF-8"></script>
 </body>
 
 </html>
