@@ -49,7 +49,7 @@
 				<!--<input type="submit" id="next_btn" name="move_btn" value="next">-->
 				<button type="submit" name="move_btn" value="next" id="next_btn">
 					<img src="./Img/next_w.png" alt="image">
-				</button>
+				</button>`
 				
 			</div>
 			

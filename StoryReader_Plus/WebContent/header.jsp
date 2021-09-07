@@ -12,11 +12,13 @@
 	  			</c:when>
 	  			<c:otherwise>
 	  			<form id="f" name = "post" action = "logout">
-	  				<a href="mypage.jsp" class="user-button">마이페이지</a>
+	  				<a href="loadMyPage" class="user-button">마이페이지</a>
 	  				<a href="javascript:void(0);" onclick="doLogout();" class="user-button">로그아웃</a>
 	  			</form>
 	  			</c:otherwise>
 	  		</c:choose>
 	  		<c:remove var="userId" scope="page" />
 		</span>
-	</div>
+</div>
+<script type="text/javascript" src="js/logout.js" charset="UTF-8"></script>
+	

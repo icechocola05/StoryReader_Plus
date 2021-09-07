@@ -62,7 +62,7 @@ public class doJoin extends HttpServlet {
 			}
 			else { //join success
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('회원가입 성공'); location.href='../StoryReader_Plus/chooseInput.jsp';</script>");
+				out.println("<script>alert('회원가입 성공'); location.href='../StoryReader_Plus/login.jsp';</script>");
 				out.flush();
 			}
 		} catch (SQLException e) {
