@@ -41,24 +41,24 @@ public class getPreListen extends HttpServlet {
 				String voice_name = request.getParameter("voice_name");
 				String emotion_name = request.getParameter("emotion_name");
 				Float intensityVal =  Float.parseFloat(request.getParameter("intensity"));
-				switch(text) {
+				switch(voice_name) {
 					case "ema":
-						text+="&nea";
+						voice_name+="&nea";
 						break;
 					case "emd":
-						text+="&ned";
+						voice_name+="&ned";
 						break;
 					case "neg":
-						text+="";
+						voice_name+="";
 						break;
 					case "emh":
-						text+="&nem";
+						voice_name+="&nem";
 						break;
 					case "emj":
-						text+="&neo";
+						voice_name+="&neo";
 						break;
 					case "nep":
-						text+="";
+						voice_name+="";
 						break;
 				}
 				
@@ -66,7 +66,7 @@ public class getPreListen extends HttpServlet {
 				JSONObject jsonObject=new JSONObject(); 
 				JSONObject voiceInfo=new JSONObject();
 				JSONObject emoInfo=new JSONObject();
-				
+				System.out.println(text);
 				jsonObject.put("text", text);
 				jsonObject.put("lang", "ko");
 
