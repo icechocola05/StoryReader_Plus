@@ -71,6 +71,8 @@
 								<label class="emotionFace<%=i%>">
 									<span class='iconify' data-inline='false' data-icon='noto:neutral-face' ></span>
 									<input type="text" style="display:none;" name="emotionVal<%=i%>" value="neutral">
+									<!-- intensity 붙이기 -->
+									<input type="text" style="display:none;" name="intensityVal<%=i%>" value="0.5">
 								</label>
 			           		</div>
 			           		
@@ -110,7 +112,7 @@
 			    </select>
 			    세기 
 				<div class="col-2 text-center" style="margin: 1%;">
-					<input type="number" name="range" min="0" max ="1" step="0.1" value="0.5">
+					<input type="number" name="range" min="1" max ="10" step="1" value="5" onchange="changeIntensity(this.value)">
 				</div>
 			    
 			</div>
@@ -196,15 +198,14 @@
 					var num = checkbox.value;
 					var element = document.getElementsByClassName('emotionFace' + num);
 					var target = document.getElementsByName('emotionVal' + num);
-					element[0].parentNode.removeChild(element[0]);
-					alert(element);
+					// 기존 element 지우는 부분 필요
 					
 					if(val == "neutral") {
 						var added = document.createElement('span');
 						added.setAttribute('class', 'iconify');
 						added.setAttribute('data-inline', 'false');
 						added.setAttribute('data-icon', 'noto:neutral-face');
-						element.appendChild(added);
+						document.querySelector('.emotionFace' + num).appendChild(added);
 						target[0].value = val;
 						alert(target[0].value);
 					}
@@ -222,7 +223,7 @@
 						added.setAttribute('class', 'iconify');
 						added.setAttribute('data-inline', 'false');
 						added.setAttribute('data-icon', 'noto:angry-face');
-						element.appendChild(added);
+						document.querySelector('.emotionFace' + num).appendChild(added);
 						target[0].value = val;
 						alert(target[0].value);
 					}
@@ -231,7 +232,35 @@
 						added.setAttribute('class', 'iconify');
 						added.setAttribute('data-inline', 'false');
 						added.setAttribute('data-icon', 'noto:crying-face');
+						document.querySelector('.emotionFace' + num).appendChild(added);
 						target[0].value = val;
+						alert(target[0].value);
+					}
+				}
+			})
+		}
+		
+		function changeIntensity(val) {
+			const checkboxes = document.getElementsByName('settingBox');
+			var intVal = parseInt(val);
+			alert(intVal);
+			checkboxes.forEach((checkbox) => {
+				if(checkbox.checked == true) {
+					var num = checkbox.value;
+					var element = document.getElementsByClassName('emotionFace' + num);
+					var target = document.getElementsByName('intensityVal' + num);
+					//css 수정 필요
+					
+					if(val >= 1 && val <= 3) {
+						target[0].value = val * 0.1;
+						alert(target[0].value);
+					}
+					else if(val >= 4 && val <= 7) {
+						target[0].value = val * 0.1;
+						alert(target[0].value);
+					}
+					else if(val >= 8) {
+						target[0].value = val * 0.1;
 						alert(target[0].value);
 					}
 				}
