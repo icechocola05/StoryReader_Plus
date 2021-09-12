@@ -57,19 +57,19 @@
             <div class="row justify-content-between align-items-center">
             
                <!-- speaker 붙이기-->
-               <div class="col-1 text-center fs-1 fw-bold" style="margin: 1%; color: #3A91DA;">
+               <div class="col-1 text-center fs-1 fw-bold" style="color: #3A91DA;">
                   <span id='speaker<%=i%>'> <%= speaker.get(i) %> </span>
                </div>
                
                <!-- voice 붙이기 -->
                <div class="col-md-auto text-center" style="margin: 1%;">
-                  <div class="voice<%=i%>" style="border:3px solid #ffb4b4; border-radius: 35%;"> 
+                  <div class="voice<%=i%>" style="border:3px solid #EF9CA1; border-radius: 35%; background-color: #EF9CA1; width: 150%; height: 180%p; padding-top: 10%;" > 
                      <input type="text" style="display:none;" id ="voiceVal<%=i%>" name="voiceVal<%=i%>" value="ema&nea">
                      
                      <!-- emotion 붙이기-->
                      <div class="col-md-auto text-center" style="margin: 1%;">
-                        <label class="emotionFace<%=i%>">
-                           <span class='iconify' data-inline='false' data-icon='noto:neutral-face' ></span>
+                        <label id="emotionFace<%=i%>">
+                           <span id='emotionFaceSpan<%=i%>' class='iconify' data-inline='false' data-icon='noto:neutral-face' style="opacity: 70%;"></span>
                            <input type="text" style="display:none;" id ="emotionVal<%=i%>" name="emotionVal<%=i%>" value="neutral">
                            <!-- intensity 붙이기 -->
                            <input type="text" style="display:none;" id ="intensityVal<%=i%>" name="intensityVal<%=i%>" value="0.5">
@@ -85,7 +85,7 @@
                </div>
                
                <!-- checkbox 붙이기 -->
-               <div class="col-md-auto text-center" style="margin: 1%;">
+               <div class="col-md-auto text-center" style="margin: 1%; zoom: 2.0;">
                   <input type="checkbox" name="settingBox" value="<%=i%>">
                </div>
                
