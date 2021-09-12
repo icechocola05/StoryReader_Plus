@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import dto.Sentence;
 import dto.Story;
 
 /**
@@ -45,118 +47,11 @@ public class readScript extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(true);
+		
+		ArrayList<Sentence> sentenceSet = (ArrayList<Sentence>)session.getAttribute("sentenceSet");
         
-        System.out.println("error here!!");
-		
-		Story currStory=(Story)session.getAttribute("currStory");
-		int n = currStory.getStoryId();
-		System.out.println(n);
-		//int sentNum = 0;
-		//session.setAttribute("sentNum", sentNum);
-		ServletContext sc = getServletContext();
-		Connection conn = (Connection)sc.getAttribute("DBconnection");
-		
-		try {
-			
-			if((int)request.getAttribute("isBegan")==1) {
-				String query="SELECT sentence_id,sentence,speaker FROM sentence WHERE story_id=?";
-				PreparedStatement sent_ps = conn.prepareStatement(query,
-                        ResultSet.TYPE_SCROLL_SENSITIVE, 
-                    ResultSet.CONCUR_UPDATABLE);
-				sent_ps.setInt(1,n);
-				ResultSet rsSent = sent_ps.executeQuery();
-				
-				rsSent.next();
-				
-				request.setAttribute("rsSent", rsSent);
-				
-				//이전 텍스트
-				request.setAttribute("pre-sent_id", -1);
-				request.setAttribute("pre-sentence",null);
-				request.setAttribute("pre-speaker",null);
-				
-				//현재 텍스트
-				request.setAttribute("sent_id", rsSent.getInt("sentence_id"));
-				request.setAttribute("sentence",rsSent.getString("sentence"));
-				request.setAttribute("speaker",rsSent.getString("speaker"));
-				
-				//다음 텍스트
-				if(rsSent.next()==true) {
-					request.setAttribute("next-sent_id", rsSent.getInt("sentence_id"));
-					request.setAttribute("next-sentence",rsSent.getString("sentence"));
-					request.setAttribute("next-speaker",rsSent.getString("speaker"));
-					rsSent.previous();
-				}
-				
-				request.setAttribute("sentNum", 0);
-				request.setAttribute("isBegan", 0);
-			}
-			else {
-				ResultSet rsSent=(ResultSet)request.getAttribute("rsSent");
-				int sentNum=(int)request.getAttribute("sentNum");
-				File sDir = new File(ATTACHES_DIR);
-		    	if (!sDir.exists())
-		    		sDir.mkdirs();
-
-		    	int maxSize = 1024 * 1024 * 100;
-		    	String encType = "UTF-8";
-		    	
-				
-				String button=request.getParameter("move_btn");
-				
-				if(button.equals("next")) {	
-					if(!rsSent.next()) {//마지막 문장일 때
-						rsSent.previous();
-					}else {
-						request.setAttribute("sentNum", sentNum + 1);
-					}
-				}
-				
-				if(button.equals("pre")) {
-					if(!rsSent.previous()) {
-						rsSent.next();
-						request.setAttribute("sentNum", 0);
-					}else {
-						//rsSent.previous();
-						request.setAttribute("sentNum", sentNum - 1);
-						}
-				}
-				if(button.equals("replay")) {
-					request.setAttribute("sentNum", 0);
-					request.setAttribute("isBegan", 1);
-					RequestDispatcher rd = request.getRequestDispatcher("/readScript");
-					rd.forward(request, response);
-					return;
-				}
-				
-				request.setAttribute("rsSent", rsSent);
-				
-				//이전 텍스트
-				if(rsSent.previous()==true) {
-					request.setAttribute("pre-sent_id",rsSent.getInt("sentence_id"));
-					request.setAttribute("pre-sentence",rsSent.getString("sentence"));
-					request.setAttribute("pre-speaker",rsSent.getString("speaker"));
-					rsSent.next();
-				}else rsSent.next();
-				
-				//현재 텍스트
-				request.setAttribute("sent_id",rsSent.getInt("sentence_id"));
-				request.setAttribute("sentence",rsSent.getString("sentence"));
-				request.setAttribute("speaker",rsSent.getString("speaker"));
-				
-				//다음 텍스트
-				if(rsSent.next()==true) {
-					request.setAttribute("next-sent_id", rsSent.getInt("sentence_id"));
-					request.setAttribute("next-sentence",rsSent.getString("sentence"));
-					request.setAttribute("next-speaker",rsSent.getString("speaker"));
-					rsSent.previous();
-				}else rsSent.previous();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-			
-		RequestDispatcher rd = request.getRequestDispatcher("/result.jsp");
+		session.setAttribute("sentenceSet", sentenceSet);
+		RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
 		rd.forward(request, response);
 	}
 

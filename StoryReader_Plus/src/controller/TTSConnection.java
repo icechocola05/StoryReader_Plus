@@ -22,6 +22,7 @@ import javax.servlet.jsp.PageContext;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import dto.Sentence;
 import dto.Story;
 import model.*;
 
@@ -39,6 +40,7 @@ public class TTSConnection extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		
 		Story currStory = (Story) session.getAttribute("currStory");
+		ArrayList<Sentence> sentenceSet = (ArrayList<Sentence>)request.getAttribute("sentenceSet");
 		int story_id = currStory.getStoryId();
 		
 		//json 형식의 text table data(session의 attribute) 가져오기
@@ -51,6 +53,7 @@ public class TTSConnection extends HttpServlet {
 		request.setAttribute("isBegan", 1);
 		
 		if (index== resultJson.size()) {
+			request.setAttribute("sentenceSet", sentenceSet);
 			RequestDispatcher rd = request.getRequestDispatcher("/readScript");
 			rd.forward(request, response);
 			return;
