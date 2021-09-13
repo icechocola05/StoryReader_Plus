@@ -73,13 +73,12 @@ public class makeJson extends HttpServlet {
 				jsonObject.put("emotionInfo", emoInfo);
 				
 		        jsonArray.add(jsonObject);
-		        
 			}
 		}
 		catch(Exception e) { //try - catch 필요 없음
 			e.printStackTrace();
 		}
-		
+		request.setAttribute("sentenceSet", sentenceSet);
 		request.setAttribute("resultJson", jsonArray);
 		session.setAttribute("i", 0);//0으로 초기화?
 		RequestDispatcher rd = request.getRequestDispatcher("/TTSConnection");
