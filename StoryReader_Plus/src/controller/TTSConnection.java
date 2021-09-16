@@ -53,7 +53,8 @@ public class TTSConnection extends HttpServlet {
 		request.setAttribute("isBegan", 1);
 		
 		if (index== resultJson.size()) {
-			request.setAttribute("sentenceSet", sentenceSet);
+			session.setAttribute("sentNum", -1);
+			session.setAttribute("sentenceSet", sentenceSet);
 			RequestDispatcher rd = request.getRequestDispatcher("/readScript");
 			rd.forward(request, response);
 			return;

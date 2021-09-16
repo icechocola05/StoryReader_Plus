@@ -47,12 +47,32 @@ public class readScript extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(true);
-		
 		ArrayList<Sentence> sentenceSet = (ArrayList<Sentence>)session.getAttribute("sentenceSet");
-        
-		session.setAttribute("sentenceSet", sentenceSet);
-		RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
-		rd.forward(request, response);
+		if((int)session.getAttribute("sentNum")==-1) {
+			session.setAttribute("sentNum", 0);
+			RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
+			rd.forward(request, response);
+		}
+		else {
+			if(((String)request.getParameter("move_btn")).equals("pre")){
+				int n = Integer.parseInt(request.getParameter("sentNumber"));
+				System.out.println(n);
+				session.setAttribute("sentNum", n-1);
+				RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
+				rd.forward(request, response);
+				
+			}else if(((String)request.getParameter("move_btn")).equals("next")){
+				int n = Integer.parseInt(request.getParameter("sentNumber"));
+				System.out.println(n);
+				session.setAttribute("sentNum", n+1);
+				RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
+				rd.forward(request, response);
+			}else if (((String)request.getParameter("move_btn")).equals("replay")){
+				session.setAttribute("sentNum", 0);
+				RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
+				rd.forward(request, response);
+			}
+		}
 	}
 
 	/**
