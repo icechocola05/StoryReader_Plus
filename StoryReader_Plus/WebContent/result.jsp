@@ -39,6 +39,7 @@
 				<div id="next-speaker"><%=request.getAttribute("next-speaker")%></div>
 				<div id="next-sentence"><%=request.getAttribute("next-sentence")%></div> 
 			</div>
+			
 			<%} %>
 			<div class="audio">
   				<button type="submit" name="move_btn" value="pre" id="pre_btn">
