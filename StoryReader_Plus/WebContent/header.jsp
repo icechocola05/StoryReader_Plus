@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="head">
-		<span class = "title-section">Story Reader</span>
+		<a href="chooseInput.jsp" class="title-button"><span class = "title-section">Story Reader</span></a>
 		<span class = "user-section">
 			<c:set var="user" scope="page" value="${sessionScope.currUser }" />
 	  		<c:choose>

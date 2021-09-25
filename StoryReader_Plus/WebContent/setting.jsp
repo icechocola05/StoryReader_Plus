@@ -92,7 +92,7 @@
                <!-- 미리듣기 버튼 붙이기 -->
                <div class="col-md-auto text-center" style="margin: 1%;">
                   <button type="button" id="pre-listen" value="미리듣기" onclick="getPreListen(<%=i%>); return false;">
-                  	<img id="pre-listen-img" src="./Img/play-button.png" alt="image">
+                     <img id="pre-listen-img" src="./Img/play-button.png" alt="image">
                   </button>
                </div>
             </div>
@@ -101,32 +101,32 @@
          </div>
       
          <%}//for문 %>   
-      	</div>
+         </div>
          
-         	<div style="width: 100%; margin-top: 4%; margin-bottom: 4%;">
-         	<div style="margin: 0 auto; width: 100%;">
-	            <span class="selectionTxt" > 음색 </span>
-	            <select id='voice' class='form-select fs-2' name='voice' onchange="changeVoice(this.value)" style="float:left; width: auto;">
-	               <%
-	                  int voiceSetSize = voiceSet.size();
-	                  for (int j=0; j<voiceSetSize; j++)  { %> 
-	                     <option value=<%= voiceSet.get(j).getVoiceName() %>><%= voiceSet.get(j).getVoiceKrName() %></option>
-	               <% } %>
-	            </select>
-	            <span class="selectionTxt"> 감정 </span>
-	            <select class='form-select fs-2' id='emotion' name='emotion' onchange="changeEmotion(this.value)" style="float:left; width: auto;">
-	                        <% for (int ls=0; ls<emotionSet.size(); ls++)  { %> 
-	                     <option value=<%= emotionSet.get(ls).getEmotionName() %>><%= emotionSet.get(ls).getEmotionKrName() %></option>
-	                        <% } %>
-	             </select>
-	             <span class="selectionTxt"> 세기 </span>
-	             <input class='form-control fs-2' type="number" name="range" min="1" max ="10" step="1" value="5" onchange="changeIntensity(this.value)" style="float:left; width: auto; ">
-	            
-	            <input type="button" style="float:left; width: auto; margin-left: 1%; font-size: 20px" id="checkSenteceBtn" name="checkSenteceBtn" value="전체 선택" onClick="this.value=selectAll()">
+            <div style="width: 100%; margin-top: 4%; margin-bottom: 4%;">
+            <div style="margin: 0 auto; width: 100%;">
+               <span class="selectionTxt" > 음색 </span>
+               <select id='voice' class='form-select fs-2' name='voice' onchange="changeVoice(this.value)" style="float:left; width: auto;">
+                  <%
+                     int voiceSetSize = voiceSet.size();
+                     for (int j=0; j<voiceSetSize; j++)  { %> 
+                        <option value=<%= voiceSet.get(j).getVoiceName() %>><%= voiceSet.get(j).getVoiceKrName() %></option>
+                  <% } %>
+               </select>
+               <span class="selectionTxt"> 감정 </span>
+               <select class='form-select fs-2' id='emotion' name='emotion' onchange="changeEmotion(this.value)" style="float:left; width: auto;">
+                           <% for (int ls=0; ls<emotionSet.size(); ls++)  { %> 
+                        <option value=<%= emotionSet.get(ls).getEmotionName() %>><%= emotionSet.get(ls).getEmotionKrName() %></option>
+                           <% } %>
+                </select>
+                <span class="selectionTxt"> 세기 </span>
+                <input class='form-control fs-2' type="number" name="range" min="1" max ="10" step="1" value="5" onchange="changeIntensity(this.value)" style="float:left; width: auto; ">
+               
+               <input type="button" style="float:left; width: auto; margin-left: 1%; font-size: 20px" id="checkSenteceBtn" name="checkSenteceBtn" value="전체 선택" onClick="this.value=selectAll()">
 
-         	</div>
-         	
-         	<br>
+            </div>
+            
+            <br>
          <div class="audio" style="width: 100%; margin: 3%; " >
             <audio id='player' autoplay controls style="width: 100%;">
                <source id = "pre-listen-audio" src="" type="audio/wav">

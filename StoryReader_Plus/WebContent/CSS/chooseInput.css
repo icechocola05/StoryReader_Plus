@@ -14,7 +14,7 @@ html,body {
 }
 .head .title-section{
 	float:center;
-	margin-right:-10%;
+	margin-right:-5%;
 }
 .head .user-section{
 	float:right;
@@ -25,13 +25,19 @@ html,body {
 	padding:5px;
 }
 .head a{
-	font-weight:normal;
 	color:white;
 	text-decoration:none;
 }
 .head a:hover{
 	color:white;
 	text-decoration:underline;
+}
+.head a.title-button{
+	font-family: Noto Sans CJK KR;
+	font-weight: bold;
+}
+.head a.user-button{
+	font-weight: normal;
 }
 .head span {
 	font-family: Noto Sans KR;
@@ -42,7 +48,6 @@ html,body {
 	letter-spacing: -0.02em;
 	color: #FFFFFF;
 }
-
 .main {
 	background-color: #FFFFFF;
 }
