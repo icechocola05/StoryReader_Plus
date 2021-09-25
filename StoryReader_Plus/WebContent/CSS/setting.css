@@ -158,3 +158,20 @@ svg[data-icon='noto:grinning-face-with-smiling-eyes'] {
 	
 	color: #FFFFFF;
 }
+
+.selectionTxt {
+	float:left;
+	color: #97C6EE;
+	font-family: Noto Sans KR;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	line-height: 43px;
+	letter-spacing: -0.02em;
+	margin: 0% 2% 0% 2%;
+}
+
+#checkSenteceBtn {
+	
+}
+
