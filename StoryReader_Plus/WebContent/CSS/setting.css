@@ -1,10 +1,6 @@
-@charset "UTF-8";
-
-   
-
+@charset "UTF-8"; 
 html,body {
    background-color: #FFFFFF;
-   height: 100%;
 }
 
 .head {
@@ -15,14 +11,20 @@ html,body {
    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
    text-align: center;
 }
+
+#f {
+   background-color: #97C6EE;
+   width: auto;
+}
+
 .head .title-section{
    float:center;
    margin-right:-10%;
 }
 .head .user-section{
-   width:15%;
    float:right;
    font-size:25px;
+   margin-right:50px;
 }
 .head .user-button{
    padding:5px;
@@ -36,10 +38,6 @@ html,body {
    color:white;
    text-decoration:underline;
 }
-.head form#f{
-   background: #97C6EE;
-}
-
 .head span {
    font-family: Noto Sans KR;
    font-style: normal;
@@ -52,7 +50,6 @@ html,body {
 .main {
    background-color: #FFFFFF;
 }
-
 
 .prog {
    width: 50%;
@@ -75,7 +72,6 @@ div button#pre-listen img#pre-listen-img{
    filter: sepia(60%);
     -webkit-filter: sepia(60%);
 }
-
 /* ------------------------------ */
 
 .speakers {
@@ -93,41 +89,36 @@ div button#pre-listen img#pre-listen-img{
 
 form {
    width: 70%;
-   height: 60%;
    margin-left: auto;
    margin-right: auto;
    background-color: #FFFFFF;
 }
 
-.settings {
-   height: 70%;
-   overflow: auto;
-}
 
 svg[data-icon='noto:angry-face'] {
    position: relative;
-   font-size: 50px;
+   font-size: 90px;
    z-index: 1;
    pointer-events: none;
 }
 
 svg[data-icon='noto:crying-face'] {
    position: relative;
-   font-size: 50px;
+   font-size: 90px;
    z-index: 1;
    pointer-events: none;
 }
 
 svg[data-icon='noto:neutral-face'] {
    position: relative;
-   font-size: 50px;
+   font-size: 90px;
    z-index: 1;
    pointer-events: none;
 }
 
 svg[data-icon='noto:grinning-face-with-smiling-eyes'] {
    position: relative;
-   font-size: 50px;
+   font-size: 90px;
    z-index: 1;
    pointer-events: none;
 }
@@ -157,20 +148,4 @@ svg[data-icon='noto:grinning-face-with-smiling-eyes'] {
    text-align: center;
    
    color: #FFFFFF;
-}
-
-.selectionTxt {
-   float:left;
-   color: #97C6EE;
-   font-family: Noto Sans KR;
-   font-style: normal;
-   font-weight: bold;
-   font-size: 30px;
-   line-height: 43px;
-   letter-spacing: -0.02em;
-   margin: 0% 2% 0% 2%;
-}
-
-#checkSenteceBtn {
-   
 }

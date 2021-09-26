@@ -21,10 +21,13 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import dao.SentenceDao;
 import dto.Sentence;
 import dto.Story;
+import dto.Voice;
+import dto.Emotion;
 
-/**
+/**display.jsp를 개발하는 동안엔 사용안함
  * Servlet implementation class setImg
  */
 @WebServlet("/readScript")
@@ -44,35 +47,55 @@ public class readScript extends HttpServlet {
 	 */
 	private static final String ATTACHES_DIR = "C:\\attaches";
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// for DB connection
+	    ServletContext sc = getServletContext();
+	    Connection con = (Connection)sc.getAttribute("DBconnection");
+	      
 		response.setContentType("text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession(true);
-		ArrayList<Sentence> sentenceSet = (ArrayList<Sentence>)session.getAttribute("sentenceSet");
-		if((int)session.getAttribute("sentNum")==-1) {
-			session.setAttribute("sentNum", 0);
-			RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
-			rd.forward(request, response);
-		}
-		else {
-			if(((String)request.getParameter("move_btn")).equals("pre")){
-				int n = Integer.parseInt(request.getParameter("sentNumber"));
-				System.out.println(n);
-				session.setAttribute("sentNum", n-1);
-				RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
-				rd.forward(request, response);
-				
-			}else if(((String)request.getParameter("move_btn")).equals("next")){
-				int n = Integer.parseInt(request.getParameter("sentNumber"));
-				System.out.println(n);
-				session.setAttribute("sentNum", n+1);
-				RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
-				rd.forward(request, response);
-			}else if (((String)request.getParameter("move_btn")).equals("replay")){
-				session.setAttribute("sentNum", 0);
-				RequestDispatcher rd = request.getRequestDispatcher("/play.jsp");
-				rd.forward(request, response);
+		
+        HttpSession session = request.getSession(true);
+		
+        Story selectedStory = (Story)session.getAttribute("selectedStory");
+        System.out.println(selectedStory.getStoryId());
+		ArrayList<Sentence> sentenceSet = (ArrayList<Sentence>)SentenceDao.getSentenceList(con, selectedStory.getStoryId());
+		
+		ArrayList<Voice> voiceSet = (ArrayList<Voice>)session.getAttribute("voiceSet");
+		ArrayList<Emotion> emotionSet = (ArrayList<Emotion>)session.getAttribute("emotionSet");
+		
+		ArrayList<String> voiceColorList = new ArrayList<String>();
+		ArrayList<String> emoticonNameList = new ArrayList<String>();
+		
+		for(int i=0;i<sentenceSet.size();i++) {
+			//각 문장의 voice_id와 맞는 voice_color를 리스트 형태로 저장
+			voiceColorList.add(voiceSet.get(sentenceSet.get(i).getVoiceId()-1).getVoiceColor());
+			//각 문장의 emotion_id에 적절한 emoticon의 이름을 저장
+			String emoticon = "";
+			switch(sentenceSet.get(i).getEmotionId()) {
+			case 1://슬픔
+				emoticon = "noto:neutral-face";
+				break;
+			case 2://기쁨
+				emoticon = "noto:grinning-face-with-smiling-eyes";
+				break;
+			case 3:
+				emoticon = "noto:angry-face";
+				break;
+			case 4:
+				emoticon = "noto:crying-face";
+				break;
 			}
+			emoticonNameList.add(emoticon);
 		}
+		
+		request.setAttribute("sentenceSet", sentenceSet);
+		request.setAttribute("voiceColorList", voiceColorList);
+		request.setAttribute("emoticonNameList", emoticonNameList);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/display.jsp");
+		rd.forward(request, response);
+
 	}
 
 	/**

@@ -57,12 +57,12 @@ public class setVoiceEmotion extends HttpServlet {
       }
       
       int sentenceSize = sentence.size();
+      
       //DB 등록
-      try {
-         String sentenceInput, speakerInput, voiceVal, emotionVal;
-         float intensity;
-         String n;
-         int index = 0;
+      String sentenceInput, speakerInput, voiceVal, emotionVal;
+      float intensity;
+      String n;
+      int index = 0;
          
          //문장 별로 설정 값을 DB에 저장한다.
          for (int i = 0; i < sentenceSize; i++) {
@@ -93,17 +93,22 @@ public class setVoiceEmotion extends HttpServlet {
             }
             int story_id = currStory.getStoryId();
             
-            // DB와 List 형태로 저장
-            Sentence invidSent = SentenceDao.insertSent(con, sentenceInput, speakerInput, emotionId, voiceId, intensity, story_id);
-            invidSent.setEmotionName(emotionVal);
-            invidSent.setVoiceName(voiceVal);
+            // DB - Sentence 테이블에 삽입
+            SentenceDao.insertSent(con, sentenceInput, speakerInput, emotionId, voiceId, intensity, story_id);
+            
+            //List 형태로 Sentence 저장
+            Sentence invidSent = new Sentence();
+            invidSent.setSentence(sentenceInput);
+            invidSent.setSpeaker(speakerInput);
+            invidSent.setEmotionId(emotionId);
+            invidSent.setVoiceId(voiceId);
+            invidSent.setIntensity(intensity);
+            invidSent.setStoryId(story_id);
+            
             sentenceSet.add(invidSent);
+            
          }
-      }
-      catch(SQLException e) {
-         e.printStackTrace();
-      }
-      
+     
       request.setAttribute("isBegan", 1);
       request.setAttribute("playAll","false");
       request.setAttribute("sentenceSet", sentenceSet);
