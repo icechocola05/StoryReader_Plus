@@ -72,16 +72,29 @@ public class confirmScript extends HttpServlet {
 		request.setAttribute("sentence_list", sentence_list); //모든 문장 -> setting에서 수정함
 		session.setAttribute("speaker_list", speaker_list); //모든 화자 -> 더 이상 수정사항 없음
 		
-		//가공3_중복 화자 제거한, 화자 배열 구하기
+		//가공3_중복 화자 제거한 화자 배열, 화자에 따른 문장 번호 구하기
 		ArrayList<String> speakerType = new ArrayList<String>();
 		LinkedHashSet<String> toRemoveOverlap = new LinkedHashSet<>(); //LinkedHashSet은 중복값 저장 불가능 
 		for(String speaker : speaker_list)
 			toRemoveOverlap.add(speaker);
 		for(String speaker : toRemoveOverlap) //중복값 제외한 화자 speakerType에 저장
 			speakerType.add(speaker);
-		
 		session.setAttribute("speakerType", speakerType); //중복 제외한 화자 -> 더 이상 수정사항 없음
 		
+		int speakerNum[][] = new int[30][50];
+		int i = 0;
+		for(String st : speakerType) {
+			int j = 0, t = 0;
+			for(String s : speaker_list ) {
+				if (s.equals(st)) {
+					speakerNum[i][t++] = j;
+				}
+				j++;
+			}
+			i++;
+			
+		}
+		request.setAttribute("speakerNum", speakerNum);
 		RequestDispatcher rd = request.getRequestDispatcher("/setting.jsp");
         rd.forward(request, response);
 	}
