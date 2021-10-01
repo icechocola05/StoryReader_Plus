@@ -1,6 +1,6 @@
 @charset "UTF-8"; 
 html,body {
-	background-color: #FFFFFF;
+   background-color: #FFFFFF;
 }
 
 .head {
@@ -13,18 +13,18 @@ html,body {
 }
 
 #f {
-	background-color: #97C6EE;
-	width: auto;
+   background-color: #97C6EE;
+   width: auto;
 }
 
 .head .title-section{
-	float:center;
-	margin-right:-10%;
+   float:center;
+   margin-right:-15%;
 }
 .head .user-section{
-	float:right;
-	font-size:25px;
-	margin-right:50px;
+	width:15%;
+   float:right;
+   font-size:25px;
 }
 .head .user-button{
 	padding:5px;
@@ -88,39 +88,39 @@ div button#pre-listen img#pre-listen-img{
 }
 
 form {
-	width: 70%;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: #FFFFFF;
+   width: 70%;
+   margin-left: auto;
+   margin-right: auto;
+   background-color: #FFFFFF;
 }
 
 
 svg[data-icon='noto:angry-face'] {
-	position: relative;
-	font-size: 90px;
-	z-index: 1;
-	pointer-events: none;
+   position: relative;
+   font-size: 90px;
+   z-index: 1;
+   pointer-events: none;
 }
 
 svg[data-icon='noto:crying-face'] {
-	position: relative;
-	font-size: 90px;
-	z-index: 1;
-	pointer-events: none;
+   position: relative;
+   font-size: 90px;
+   z-index: 1;
+   pointer-events: none;
 }
 
 svg[data-icon='noto:neutral-face'] {
-	position: relative;
-	font-size: 90px;
-	z-index: 1;
-	pointer-events: none;
+   position: relative;
+   font-size: 90px;
+   z-index: 1;
+   pointer-events: none;
 }
 
 svg[data-icon='noto:grinning-face-with-smiling-eyes'] {
-	position: relative;
-	font-size: 90px;
-	z-index: 1;
-	pointer-events: none;
+   position: relative;
+   font-size: 90px;
+   z-index: 1;
+   pointer-events: none;
 }
 
 

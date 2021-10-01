@@ -14,12 +14,12 @@ html,body {
 }
 .head .title-section{
 	float:center;
-	margin-right:-10%;
+	margin-right:-15%;
 }
 .head .user-section{
+	width:15%;
 	float:right;
 	font-size:25px;
-	margin-right:50px;
 }
 .head .user-button{
 	padding:5px;

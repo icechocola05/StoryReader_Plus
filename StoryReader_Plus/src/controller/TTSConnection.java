@@ -22,6 +22,7 @@ import javax.servlet.jsp.PageContext;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import dao.SettingDao;
 import dto.Sentence;
 import dto.Story;
 import model.*;
@@ -46,20 +47,20 @@ public class TTSConnection extends HttpServlet {
 		//json 형식의 text table data(session의 attribute) 가져오기
 		JSONArray resultJson = new JSONArray();
 		resultJson = (JSONArray) request.getAttribute("resultJson");
-		int index = (int) session.getAttribute("i");
+		int index = (int) request.getAttribute("i");
 		System.out.println(index);
 		
 		request.setAttribute("lastNum", resultJson.size() - 1);
 		request.setAttribute("isBegan", 1);
 		
 		if (index== resultJson.size()) {
-			session.setAttribute("sentNum", -1);
-			session.setAttribute("sentenceSet", sentenceSet);
-			RequestDispatcher rd = request.getRequestDispatcher("/readScript");
+			//session.setAttribute("sentNum", -1);
+			session.setAttribute("selectedStory", currStory);
+			RequestDispatcher rd = request.getRequestDispatcher("/readScript");// 원래 경로 : /readScript
 			rd.forward(request, response);
 			return;
 		} else {
-			session.setAttribute("i", index + 1);
+			request.setAttribute("i", index + 1);
 		}
 
 		try {
@@ -98,7 +99,7 @@ public class TTSConnection extends HttpServlet {
 	               fileSaveDir.mkdirs();
 	            }
 
-	            File audioFile = new File(path, index + ".wav");
+	            File audioFile = new File(path, currStory.getStoryId()+"_"+currStory.getStoryName()+"_"+ index + ".wav");//음성 파일 이름 : 스토리 아이디_스토리 이름_문장 인덱스.wav
 	            audioFile.createNewFile();
 
 				OutputStream outputStream = new FileOutputStream(audioFile);
@@ -126,7 +127,7 @@ public class TTSConnection extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
+		request.setAttribute("sentenceSet", sentenceSet);
 		RequestDispatcher rd = request.getRequestDispatcher("/TTSConnection");
 		rd.include(request, response);
 	}

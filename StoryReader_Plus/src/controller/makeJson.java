@@ -17,6 +17,8 @@ import org.json.simple.JSONObject;
 
 import dto.Sentence;
 import dto.Story;
+import dto.Voice;
+import dto.Emotion;
 
 /**
  * Servlet implementation class makeJson
@@ -38,9 +40,12 @@ public class makeJson extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		
 		Story currStory = (Story) session.getAttribute("currStory");
+		
 		int story_id = currStory.getStoryId();
 		
 		List<Sentence> sentenceSet = (List<Sentence>) request.getAttribute("sentenceSet");
+		List<Voice> voiceSet = (List<Voice>) session.getAttribute("voiceSet");
+		List<Emotion> emotionSet = (List<Emotion>) session.getAttribute("emotionSet");
 		
 		//현재 스토리에 대한 문장 정보를 JSON 파일로 생성
 		try {
@@ -49,8 +54,8 @@ public class makeJson extends HttpServlet {
 				Sentence sent = sentenceSet.get(i);
 				
 				String text = sent.getSentence();
-				String voice_name = sent.getVoiceName();
-				String emotion_name = sent.getEmotionName();
+				String voice_name = voiceSet.get(sent.getVoiceId()-1).getVoiceName();
+				String emotion_name = emotionSet.get(sent.getEmotionId()-1).getEmotionName();
 				float intensityVal = sent.getIntensity();
 				
 				//JSON 생성
@@ -80,7 +85,7 @@ public class makeJson extends HttpServlet {
 		}
 		request.setAttribute("sentenceSet", sentenceSet);
 		request.setAttribute("resultJson", jsonArray);
-		session.setAttribute("i", 0);//0으로 초기화?
+		request.setAttribute("i", 0);//0으로 초기화?
 		RequestDispatcher rd = request.getRequestDispatcher("/TTSConnection");
         rd.forward(request, response);
 	}
