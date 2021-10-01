@@ -4,12 +4,12 @@ html,body {
 }
 
 .head {
-	position: relative;
-	padding-top: 1.5%;
-	padding-bottom: 1.5%;
-	background: #97C6EE;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-	text-align: center;
+   position: relative;
+   padding-top: 1.5%;
+   padding-bottom: 1.5%;
+   background: #97C6EE;
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+   text-align: center;
 }
 
 #f {
@@ -27,36 +27,36 @@ html,body {
    font-size:25px;
 }
 .head .user-button{
-	padding:5px;
+   padding:5px;
 }
 .head a{
-	font-weight:normal;
-	color:white;
-	text-decoration:none;
+   font-weight:normal;
+   color:white;
+   text-decoration:none;
 }
 .head a:hover{
-	color:white;
-	text-decoration:underline;
+   color:white;
+   text-decoration:underline;
 }
 .head span {
-	font-family: Noto Sans KR;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 30px;
-	line-height: 43px;
-	letter-spacing: -0.02em;
-	color: #FFFFFF;
+   font-family: Noto Sans KR;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 30px;
+   line-height: 43px;
+   letter-spacing: -0.02em;
+   color: #FFFFFF;
 }
 .main {
-	background-color: #FFFFFF;
+   background-color: #FFFFFF;
 }
 
 .prog {
-	width: 50%;
-	margin-left: 24%;
-	margin-top: 4%;
-	margin-bottom: 3%;
-	height: 10%;
+   width: 50%;
+   margin-left: 24%;
+   margin-top: 4%;
+   margin-bottom: 3%;
+   height: 10%;
 }
 /* ------------------------------ */
 div button#pre-listen{
@@ -75,16 +75,16 @@ div button#pre-listen img#pre-listen-img{
 /* ------------------------------ */
 
 .speakers {
-	background: #97C6EE;
-	border-radius: 20px;
-	
-	width: 40%;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	
-	padding: 2% 2% 2% 2%;
-	
+   background: #97C6EE;
+   border-radius: 20px;
+   
+   width: 40%;
+   text-align: center;
+   margin-left: auto;
+   margin-right: auto;
+   
+   padding: 2% 2% 2% 2%;
+   
 }
 
 form {
@@ -126,26 +126,26 @@ svg[data-icon='noto:grinning-face-with-smiling-eyes'] {
 
 
 .btn {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 .submit-btn {
-	margin-top: 2%;
-	width: 100%;
-	padding: 2% 20% 2% 20%;
-	background-color: #97C6EE;
-	border: none;
-	
-	font-family: Noto Sans;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 33px;
-	line-height: 48px;
-	/* identical to box height */
-	
-	text-align: center;
-	
-	color: #FFFFFF;
+   margin-top: 2%;
+   width: 100%;
+   padding: 2% 20% 2% 20%;
+   background-color: #97C6EE;
+   border: none;
+   
+   font-family: Noto Sans;
+   font-style: normal;
+   font-weight: 600;
+   font-size: 33px;
+   line-height: 48px;
+   /* identical to box height */
+   
+   text-align: center;
+   
+   color: #FFFFFF;
 }
