@@ -22,6 +22,7 @@ public class SentenceModel {
 					sentence.setStoryId(rs.getInt("story_id"));
 					sentence.setEmotionId(rs.getInt("emotion_id"));
 					sentence.setVoiceId(rs.getInt("voice_id"));
+					sentence.setIntensity(rs.getFloat("intensity"));
 					sentenceList.add(sentence);
 				}
 			} catch (SQLException e) {

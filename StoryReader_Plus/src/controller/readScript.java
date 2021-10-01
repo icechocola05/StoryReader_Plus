@@ -66,10 +66,13 @@ public class readScript extends HttpServlet {
 		
 		ArrayList<String> voiceColorList = new ArrayList<String>();
 		ArrayList<String> emoticonNameList = new ArrayList<String>();
+		ArrayList<String> opacityList = new ArrayList<String>();
 		
 		for(int i=0;i<sentenceSet.size();i++) {
+			
 			//각 문장의 voice_id와 맞는 voice_color를 리스트 형태로 저장
 			voiceColorList.add(voiceSet.get(sentenceSet.get(i).getVoiceId()-1).getVoiceColor());
+			
 			//각 문장의 emotion_id에 적절한 emoticon의 이름을 저장
 			String emoticon = "";
 			switch(sentenceSet.get(i).getEmotionId()) {
@@ -87,11 +90,29 @@ public class readScript extends HttpServlet {
 				break;
 			}
 			emoticonNameList.add(emoticon);
+			
+			//각 문장의 emotion_intensity를 적절한 opacity로 분류
+			float val = sentenceSet.get(i).getIntensity();
+			String opacity ="";
+			if(val>=(float)0.1&& val<=(float)0.3) {//0.1보다 크고 0.3보다 작은 경우
+	             opacity = "20%";
+	          }
+	          else if(val>=(float)0.4&&val<=(float)0.7) {
+	            opacity = "70%";
+	          }
+	          else if(val>=(float)0.8) {
+	            opacity = "100%";
+	         }
+	          else {
+	        	  opacity = Float.toString(val);
+	          }
+			 opacityList.add(opacity);
 		}
 		
 		request.setAttribute("sentenceSet", sentenceSet);
 		request.setAttribute("voiceColorList", voiceColorList);
 		request.setAttribute("emoticonNameList", emoticonNameList);
+		request.setAttribute("opacityList", opacityList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/display.jsp");
 		rd.forward(request, response);

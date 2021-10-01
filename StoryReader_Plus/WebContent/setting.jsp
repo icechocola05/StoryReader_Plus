@@ -33,11 +33,14 @@
       ArrayList<String> sentence = (ArrayList<String>) request.getAttribute("sentence_list");
       int speakerNum[][] = (int[][]) request.getAttribute("speakerNum");
       
-      //DB의 Emotion, Voice 가져오기 + session에 저장
-      ServletContext sc = getServletContext();
+      //DB의 Emotion, Voice 가져오기 + session에 저장 -> index.jsp에서 처리
+      /*ServletContext sc = getServletContext();
       Connection con = (Connection)sc.getAttribute("DBconnection");
       List<Voice> voiceSet = SettingDao.getVoice(con);
-      List<Emotion> emotionSet = SettingDao.getEmotion(con);
+      List<Emotion> emotionSet = SettingDao.getEmotion(con);*/
+      
+      List<Voice> voiceSet = (List<Voice>)session.getAttribute("voiceSet");
+      List<Emotion> emotionSet = (List<Emotion>)session.getAttribute("voiceSet");
       
       session.setAttribute("voiceSet", voiceSet);
       session.setAttribute("emotionSet", emotionSet);
@@ -197,48 +200,67 @@
       }
       
       function changeEmotion(val) {
-         var valNum = parseInt(val.charAt(val.length - 1)); //option 인덱스
+         var valNum = 0; // option 인덱스 - parseInt(val.charAt(val.length - 1));
+         var valTimes = 1; // 자리수 산정하는 변수 : 1->10->100
+         var sliceVal = 0; //slice 하려는 대상
+
+         while(true){
+        	 
+        	 console.log(val.slice(-1));
+        	 sliceVal = parseInt(val.slice(-1));
+        	 
+        	 if (sliceVal>=0&& sliceVal<=9){
+        		 valNum = valNum + (sliceVal * valTimes);
+        		 val = val.slice(0, -1);
+        		 console.log(val);
+        		 valTimes=valTimes*10;
+             }else{
+            	 break;
+             }
+         }
+         console.log(valNum);
+         
          var element = document.getElementById("emotionFace" + valNum);
          var target = document.getElementById("emotionVal" + valNum);
-         val = val.slice(0, -1);
+         
          var deleteElement = document.getElementById('emotionFaceSpan' + valNum);
-            deleteElement.parentNode.removeChild(deleteElement);
+         deleteElement.parentNode.removeChild(deleteElement);
             
-            if(val == "neutral") {
-             var added = document.createElement('span');
+         if(val == "neutral") {
+         	var added = document.createElement('span');
             added.setAttribute('id', 'emotionFaceSpan' + valNum);
-             added.setAttribute('class', 'iconify');
-             added.setAttribute('data-inline', 'false');
-             added.setAttribute('data-icon', 'noto:neutral-face');
-             element.appendChild(added);
-             target.value = val;
+            added.setAttribute('class', 'iconify');
+            added.setAttribute('data-inline', 'false');
+            added.setAttribute('data-icon', 'noto:neutral-face');
+            element.appendChild(added);
+            target.value = val;
          }
-            if(val == "happiness") {
-             var added = document.createElement('span');
+         if(val == "happiness") {
+            var added = document.createElement('span');
             added.setAttribute('id', 'emotionFaceSpan' + valNum);
-             added.setAttribute('class', 'iconify');
-             added.setAttribute('data-inline', 'false');
-             added.setAttribute('data-icon', 'noto:grinning-face-with-smiling-eyes');
-             element.appendChild(added);
-             target.value = val;
+            added.setAttribute('class', 'iconify');
+            added.setAttribute('data-inline', 'false');
+            added.setAttribute('data-icon', 'noto:grinning-face-with-smiling-eyes');
+            element.appendChild(added);
+            target.value = val;
           }
-            if(val == "anger") {
-             var added = document.createElement('span');
+          if(val == "anger") {
+            var added = document.createElement('span');
             added.setAttribute('id', 'emotionFaceSpan' + valNum);
-             added.setAttribute('class', 'iconify');
-             added.setAttribute('data-inline', 'false');
-             added.setAttribute('data-icon', 'noto:angry-face');
-             element.appendChild(added);
-             target.value = val;
-             }
-            if(val == "sadness") {
-             var added = document.createElement('span');
+            added.setAttribute('class', 'iconify');
+            added.setAttribute('data-inline', 'false');
+            added.setAttribute('data-icon', 'noto:angry-face');
+            element.appendChild(added);
+            target.value = val;
+          }
+          if(val == "sadness") {
+            var added = document.createElement('span');
             added.setAttribute('id', 'emotionFaceSpan' + valNum);
-             added.setAttribute('class', 'iconify');
-             added.setAttribute('data-inline', 'false');
-             added.setAttribute('data-icon', 'noto:crying-face');
-             element.appendChild(added);
-             target.value = val;
+            added.setAttribute('class', 'iconify');
+            added.setAttribute('data-inline', 'false');
+            added.setAttribute('data-icon', 'noto:crying-face');
+            element.appendChild(added);
+            target.value = val;
           }
       }
       
@@ -254,6 +276,7 @@
           else if(val >= 0.8) {
             element.style.opacity = "100%";
          }
+         target.value = val.toString();
       }
 
       

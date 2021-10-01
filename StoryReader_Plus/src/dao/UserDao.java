@@ -67,7 +67,7 @@ public class UserDao {
     * 주어진 id가 DB내 존재하지 않을 경우 return true
     * 주어진 id가 DB내 존재하거나 쿼리 실행 실패 시 return false
     */
-   public static boolean selectEmail(Connection con, String id) throws SQLException{
+   public static boolean selectID(Connection con, String id) throws SQLException{
       PreparedStatement pstmt=null;
       try {
          con.setAutoCommit(false);

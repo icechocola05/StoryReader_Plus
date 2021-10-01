@@ -75,7 +75,7 @@ public class setVoiceEmotion extends HttpServlet {
             System.out.println(voiceVal);
             emotionVal = request.getParameter("emotionVal" + n);
             System.out.println(emotionVal);
-            intensity = Float.parseFloat(request.getParameter("intensityVal" + n));
+            intensity = Float.parseFloat(request.getParameter("intensity" + n));
             System.out.println(intensity);
             
             //Emotion, Voice의 id 값은 List에서 다시 구한다.

@@ -18,6 +18,7 @@
 		ArrayList<Sentence> sentenceSet = (ArrayList<Sentence>)request.getAttribute("sentenceSet");
 		ArrayList<String> voiceColorList = (ArrayList<String>)request.getAttribute("voiceColorList");
 		ArrayList<String> emoticonNameList = (ArrayList<String>)request.getAttribute("emoticonNameList");
+		ArrayList<String> opacityList = (ArrayList<String>)request.getAttribute("opacityList");
 		int size = sentenceSet.size()-1;
 	 %>
 	<div class="main">
@@ -32,7 +33,7 @@
 				<!--voice 붙이기 -->
                 <div class="voice" id="voiceVal<%=i%>" style="background-color:<%=voiceColorList.get(i)%>;">
                 	<div class="emotion" id ="emotionVal<%=i%>">
-                        <label id="emotionFace<%=i%>">
+                        <label id="emotionFace<%=i%>" style="opacity:<%=opacityList.get(i)%>;">
                            <span id='emotionFaceSpan<%=i%>' class='iconify' data-inline='false' data-icon='<%=emoticonNameList.get(i)%>'></span>
                         </label>
                      </div>
@@ -58,16 +59,12 @@
 	var lastNum = <%=size%>;
 	var story_id = "<%=currStory.getStoryId()%>";
     var story_name = "<%=currStory.getStoryName()%>";
-    
-	function highlight(){
-		//var sentence = document.getElementById('sentence'+nowNum.toString());
-        //sentence.style.backgroundColor = "#C8C8C8";
-	}
-	
+    window.onload = function(){
+    	var sentence = document.getElementById('sentence'+nowNum.toString());
+        sentence.style.backgroundColor = "#F0F0F0";
+    }
 	function next(){
 		 if(nowNum <= lastNum) {
-			 //var sentence = document.getElementById('sentence'+nowNum.toString());
-	         //sentence.style.backgroundColor = "#FFFFFF";
 	         document.getElementById("next_btn").click();
 	      }
 	}

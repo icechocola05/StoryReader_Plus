@@ -101,6 +101,38 @@ div.emotion{
 	width:100%;
 	height:100%;
 }
+svg[data-icon='noto:angry-face'] {
+   position: relative;
+   font-size: 35px;
+   z-index: 1;
+   pointer-events: none;
+   margin-bottom:3px;
+}
+
+svg[data-icon='noto:crying-face'] {
+   position: relative;
+   font-size: 35px;
+   z-index: 1;
+   pointer-events: none;
+   margin-bottom:3px;
+}
+
+svg[data-icon='noto:neutral-face'] {
+   position: relative;
+   font-size: 35px;
+   z-index: 1;
+   pointer-events: none;
+   margin-bottom:3px;
+}
+
+svg[data-icon='noto:grinning-face-with-smiling-eyes'] {
+   position: relative;
+   font-size: 35px;
+   z-index: 1;
+   pointer-events: none;
+   margin-bottom:3px;
+}
+
 div.speaker, div.sentence{
 	display:inline;
 }
