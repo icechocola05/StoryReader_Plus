@@ -64,7 +64,7 @@ public class TTSConnection extends HttpServlet {
 		}
 
 		try {
-			URL url = new URL("http://220.69.171.32:5000/tts"); // 음성합성기 URL 넣기
+			URL url = new URL("http://220.69.171.37:5000/tts"); // 음성합성기 URL 넣기
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Content-Type", "application/json; UTF-8");

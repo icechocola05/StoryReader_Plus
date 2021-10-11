@@ -36,6 +36,7 @@
       <div class="sub">당신의 이야기를 읽어드릴게요</div>
       <div class="title">Story Reader</div>
       <button onclick="location='chooseInput.jsp'">Story Reader Start  > </button>
+      <button onclick="location='explain.jsp'"style="background-color:#C4C4C4">Story Reader Help  > </button>
    </div>
    <div class="img">
       <img alt="faces" src="Img/faces.png" class="faces">
