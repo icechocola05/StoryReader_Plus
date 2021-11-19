@@ -120,7 +120,7 @@ public class readMyScript extends HttpServlet {
 		request.setAttribute("emoticonNameList", emoticonNameList);
 		request.setAttribute("opacityList", opacityList);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/display.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/mydisplay.jsp");
 		rd.forward(request, response);
 
    }

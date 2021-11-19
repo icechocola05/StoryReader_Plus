@@ -1,3 +1,5 @@
+@charset "UTF-8";	
+
 html,body {
 	background-color: #FFFFFF;
 }
@@ -10,7 +12,7 @@ html,body {
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 	text-align: center;
 }
-head .title-section{
+.head .title-section{
 	float:center;
 	margin-right:-15%;
 }
@@ -23,13 +25,14 @@ head .title-section{
 	padding:5px;
 }
 .head a{
-	font-weight:normal;
 	color:white;
 	text-decoration:none;
+	font-weight:normal;
 }
 .head a:hover{
 	color:white;
 	text-decoration:underline;
+	font-weight:normal;
 }
 .head span {
 	font-family: Noto Sans KR;

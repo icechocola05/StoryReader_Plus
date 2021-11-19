@@ -15,7 +15,7 @@
 <html>
 <%@ include file="head.html" %>
 <head>
-   <link rel="stylesheet" href="CSS/setting.css">   
+   <link rel="stylesheet" href="CSS/edit.css">   
 </head>
 <body>
    <jsp:include page="header.jsp"></jsp:include>
@@ -27,21 +27,22 @@
    </div>
    
    <% 
-      //저장한 이야기, 문장, 화자 정보 받아오기
-      ArrayList<String> speaker = (ArrayList<String>) session.getAttribute("speaker_list");
-      ArrayList<String> speakerType = (ArrayList<String>) session.getAttribute("speakerType");
-      ArrayList<String> sentence = (ArrayList<String>) request.getAttribute("sentence_list");
-      int speakerNum[][] = (int[][]) request.getAttribute("speakerNum");
+   
+   	Story currStory = (Story)session.getAttribute("currStory");
+	ArrayList<Sentence> sentenceSet = (ArrayList<Sentence>)request.getAttribute("sentenceSet");
+	ArrayList<String> voiceColorList = (ArrayList<String>)request.getAttribute("voiceColorList");
+	ArrayList<String> emoticonNameList = (ArrayList<String>)request.getAttribute("emoticonNameList");
+	ArrayList<String> opacityList = (ArrayList<String>)request.getAttribute("opacityList");
+    
+	//저장한 이야기, 문장, 화자 정보 받아오기
+    ArrayList<String> speakerType = (ArrayList<String>) request.getAttribute("speakerType");
+    int speakerNum[][] = (int[][]) request.getAttribute("speakerNum");
       
-      //DB의 Emotion, Voice 가져오기 + session에 저장 -> index.jsp에서 처리
-      /*ServletContext sc = getServletContext();
-      Connection con = (Connection)sc.getAttribute("DBconnection");
-      List<Voice> voiceSet = SettingDao.getVoice(con);
-      List<Emotion> emotionSet = SettingDao.getEmotion(con);*/
+    List<Voice> voiceSet = (List<Voice>)session.getAttribute("voiceSet");
+    List<Emotion> emotionSet = (List<Emotion>)session.getAttribute("emotionSet");
       
-      List<Voice> voiceSet = (List<Voice>)session.getAttribute("voiceSet");
-      List<Emotion> emotionSet = (List<Emotion>)session.getAttribute("emotionSet");
-      
+    session.setAttribute("voiceSet", voiceSet);
+    session.setAttribute("emotionSet", emotionSet);
       
       //color 배열 만들기
       String voiceColorSet[] = new String[10];
@@ -76,7 +77,7 @@
    %>
    
    <!-- speaker setting -->
-   <form method="Post" action="setVoiceEmotion" >
+   <form method="Post" action="editVoiceEmotion" >
       <div class="set">
          <div class="speakers" >
             <div class="row">
@@ -104,7 +105,8 @@
       <br>
       <%
          //문장 수 만큼 div 생성
-         int len = sentence.size(); 
+         int len = sentenceSet.size(); 
+      	 System.out.println("sentence : "+ len);
          for(int i=0; i<len; i++) { 
       %>
          
@@ -113,38 +115,39 @@
          
             <!-- speaker 붙이기-->
             <div class="col-1 text-center fs-1 fw-bold" style="color: #3A91DA;">
-               <span id='speaker<%=i%>'> <%= speaker.get(i) %> </span>
+               <textarea class="speaker" id='speaker<%=i%>' name="speaker<%=i%>"> <%= sentenceSet.get(i).getSpeaker()%> </textarea>
             </div>
             
             <div class="col-md-auto text-center" style="margin: 1%;">
                <!-- voice 붙이기 -->
-               <div class="voice<%=i%>" style="border:3px solid #EF9CA1; border-radius: 35%; background-color: #EF9CA1; width: 150%; height: 180%p; padding-top: 10%;" > 
-                  <input type="text" style="display:none;" id ="voiceVal<%=i%>" name="voiceVal<%=i%>" value="ema&nea">
+               <%System.out.println("voiceColor : "+ voiceColorList.get(i)); %>
+               <%System.out.println(voiceSet.get(sentenceSet.get(i).getVoiceId()-1).getVoiceName()); %>
+               <div class="voice<%=i%>" style="border:3px solid <%=voiceColorList.get(i)%>; border-radius: 35%; background-color: <%=voiceColorList.get(i)%>; width: 150%; height: 180%p; padding-top: 10%;" > 
+                  <input type="text" style="display:none;" id ="voiceVal<%=i%>" name="voiceVal<%=i%>" value="<%=voiceSet.get(sentenceSet.get(i).getVoiceId()-1).getVoiceName()%>">
                   <!-- emotion 붙이기-->
                   <div class="col-md-auto text-center" style="margin: 1%;">
                      <label id="emotionFace<%=i%>"  style="opacity: 70%;">
-                        <span id='emotionFaceSpan<%=i%>' class='iconify' data-inline='false' data-icon='noto:neutral-face'></span>
+                        <span id='emotionFaceSpan<%=i%>' class='iconify' data-inline='false' data-icon='<%=emoticonNameList.get(i)%>'></span>
                      </label>
                      <select class='form-select fs-2' id='emotion<%=i%>' name='emotion<%=i%>' onchange="changeEmotion(this.value)" style="width: 58%; margin-left: 20%; margin-bottom: 10%;">
                               <% for (int ls=0; ls<emotionSet.size(); ls++)  { %> 
-                                 <option value=<%= emotionSet.get(ls).getEmotionName() + i%>><%= emotionSet.get(ls).getEmotionKrName() %></option>
+                                 <option value=<%= emotionSet.get(ls).getEmotionName() + i%>><%= emotionSet.get(ls).getEmotionKrName()%></option>
                               <% } %>
                          </select>
-                         <input type="text" style="display:none;" id ="emotionVal<%=i%>" name="emotionVal<%=i%>" value="neutral">
-                     
+                         <input type="text" style="display:none;" id ="emotionVal<%=i%>" name="emotionVal<%=i%>" value="<%=emotionSet.get(sentenceSet.get(i).getEmotionId()-1).getEmotionName()%>"> 
                   </div>
                </div>
             </div>
             
             <!-- emotion intensity 붙이기-->
             <div class="col-1 text-center" style="margin: 2%;">
-               <input type="range" name="intensity<%=i%>" min="0" max ="1" step="0.1" value="0.5" onchange="changeIntensity(this.value, <%=i%>)">
-               <input type="text" style="display:none;" id ="intensityVal<%=i%>" name="intensityVal<%=i%>" value="0.5">
+               <input type="range" name="intensity<%=i%>" min="0" max ="1" step="0.1" value="<%=sentenceSet.get(i).getIntensity()%>" onchange="changeIntensity(this.value, <%=i%>)">
+               <input type="text" style="display:none;" id ="intensityVal<%=i%>" name="intensityVal<%=i%>" value="<%=sentenceSet.get(i).getIntensity()%>">
             </div>
             
             <!-- sentence 붙이기-->
             <div class="col-5 text-center"style="margin: 1%;" >
-               <textarea id="sentence<%=i%>" class="col-7 form-control fs-1" name="sentence<%=i%>"><%= sentence.get(i) %></textarea>
+               <textarea id="sentence<%=i%>" class="col-7 form-control fs-1" name="sentence<%=i%>"><%= sentenceSet.get(i).getSentence() %></textarea>
             </div>
             
             <!-- 미리듣기 버튼 붙이기 -->
@@ -167,7 +170,7 @@
       </div>
       
       <div class="btn">
-         <button type="SUBMIT" class="submit-btn"> 다음 단계로 >  </button>
+         <button type="SUBMIT" class="submit-btn"> 수정 완료 >  </button>
       </div>
    </form>
    <br>

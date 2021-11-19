@@ -17,7 +17,11 @@ public class StoryDao {
 	
 	//Story 삽입
 	private final static String SQLST_INSERT_STORY = "INSERT INTO story (story_name, user_id) VALUES (?, ?)";
+	//Story 찾기
 	private final static String SQLST_SELECT_USER_STORY = "SELECT * FROM story WHERE user_id = ?";
+	//Story 삭제
+	private final static String SQLST_DELETE_STORY = "DELETE FROM story WHERE story_id = ?";
+	
 	
 	//Story 삽입 성공 시 story 객체 return
 	public static Story insertStory(Connection con, String title, int user_id) throws SQLException {
@@ -73,4 +77,29 @@ public class StoryDao {
 		
 	}
 
+	//Story 삭제 -> CASCADE 기능을 이용하여 Story 삭제 시 문장도 함께 삭제 
+	public static void deleteStory(Connection con, int story_id) {
+		PreparedStatement pstmt = null;
+		try {
+			con.setAutoCommit(false);
+			
+			pstmt = con.prepareStatement(SQLST_DELETE_STORY);
+			pstmt.setInt(1, story_id);
+			
+			pstmt.executeUpdate();
+			con.commit();
+			con.setAutoCommit(true);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null) {try {
+				pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} }
+		}
+	}
+	
 }

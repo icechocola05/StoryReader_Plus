@@ -33,6 +33,9 @@ public class Sentence {
 		this.intensity = intensity;
 	}
 
+	public int getSentenceId() {
+		return sentence_id;
+	}
 	
 	public String getSentence() {
 		return sentence;

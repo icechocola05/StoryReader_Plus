@@ -45,7 +45,6 @@ public class readScript extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	private static final String ATTACHES_DIR = "C:\\attaches";
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// for DB connection

@@ -37,7 +37,6 @@ public class TTSConnection extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ServletContext sc = getServletContext();
-		//Connection conn = (Connection)sc.getAttribute("DBconnection");
 		HttpSession session = request.getSession(true);
 		
 		Story currStory = (Story) session.getAttribute("currStory");

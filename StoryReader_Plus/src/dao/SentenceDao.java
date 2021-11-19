@@ -15,6 +15,8 @@ public class SentenceDao {
 	private final static String SQLST_INSERT_SENTENCE="INSERT INTO sentence (sentence, speaker,  story_id, voice_id, emotion_id, intensity) VALUES (?, ?, ?, ?, ?, ?)";
 	//Story의 Sentence List 가져오기
 	private final static String SQLST_SELECT_SENTENCE_BY_STORY_ID = "SELECT sentence_id, sentence, speaker,  story_id, voice_id, emotion_id, intensity FROM sentence WHERE story_id = ?";
+	//Story의 Sentence 수정하기
+	private final static String SQLST_UPDATE_SENTENCE = "UPDATE sentence SET sentence = ?,  speaker = ?,  voice_id = ?, emotion_id = ?, intensity  = ? WHERE sentence_id = ?";
 	public static void insertSent(Connection con, String sentence, String speaker, int emotionId, int voiceId, float intensity, int story_id) {
 		PreparedStatement pstmt = null;
 		try {
@@ -70,7 +72,33 @@ public class SentenceDao {
 		 }
 		return null;
 	}
-	
-	
+	public static void updateSent(Connection con, String sentence, String speaker, int emotionId, int voiceId, float intensity, int sentence_id) {
+		PreparedStatement pstmt = null;
+		try {
+			con.setAutoCommit(false);
+			
+			pstmt = con.prepareStatement(SQLST_UPDATE_SENTENCE);
+			pstmt.setString(1, sentence);
+			pstmt.setString(2, speaker);
+			pstmt.setInt(3, voiceId);
+			pstmt.setInt(4, emotionId);
+			pstmt.setFloat(5, intensity);
+			pstmt.setInt(6, sentence_id);
+			
+			pstmt.executeUpdate();
+			con.commit();
+			con.setAutoCommit(true);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null) {try {
+				pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} }
+		}
+	}
 
 }

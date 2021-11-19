@@ -42,6 +42,8 @@
       List<Voice> voiceSet = (List<Voice>)session.getAttribute("voiceSet");
       List<Emotion> emotionSet = (List<Emotion>)session.getAttribute("emotionSet");
       
+      session.setAttribute("voiceSet", voiceSet);
+      session.setAttribute("emotionSet", emotionSet);
       
       //color 배열 만들기
       String voiceColorSet[] = new String[10];

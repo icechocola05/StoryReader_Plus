@@ -20,10 +20,10 @@ import dto.Sentence;
 import dto.Story;
 import dto.Voice;
 
-@WebServlet("/setVoiceEmotion")
-public class setVoiceEmotion extends HttpServlet {
+@WebServlet("/editVoiceEmotion")
+public class editVoiceEmotion extends HttpServlet {
    private static final long serialVersionUID = 1L;
-   public setVoiceEmotion() {
+   public editVoiceEmotion() {
       super();
    }
    protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,34 +41,37 @@ public class setVoiceEmotion extends HttpServlet {
       HttpSession session = request.getSession(true);
       
       Story currStory = (Story) session.getAttribute("currStory");
-      ArrayList<String> speaker = (ArrayList<String>) session.getAttribute("speaker_list");
+      //ArrayList<String> speaker = (ArrayList<String>) session.getAttribute("speaker_list");
+      int story_id = currStory.getStoryId();
+      ArrayList<Sentence> sentenceSet = (ArrayList<Sentence>)SentenceDao.getSentenceList(con, story_id);
       List<Voice> voiceSet = (List<Voice>) session.getAttribute("voiceSet");
       List<Emotion> emotionSet = (List<Emotion>) session.getAttribute("emotionSet");
       
       ArrayList<String> sentence = new ArrayList<String>();
-      List<Sentence> sentenceSet = new ArrayList<Sentence>();
+      ArrayList<String> speaker = new ArrayList<String>();
       String temp;
       
       //문장 받아오기
-      for(int i=0; i<speaker.size(); i++) {
+      for(int i=0; i<sentenceSet.size(); i++) {
          temp = (String)request.getParameter("sentence" + i);
          System.out.println(temp);
          sentence.add(temp);
+         temp = (String)request.getParameter("speaker"+i);
+         speaker.add(temp);
       }
-      
-      int sentenceSize = sentence.size();
       
       //DB 등록
       String sentenceInput, speakerInput, voiceVal, emotionVal;
       float intensity;
       String n;
-      int index = 0;
+      int sentence_id;
          
       //문장 별로 설정 값을 DB에 저장한다.
-         for (int i = 0; i < sentenceSize; i++) {
+         for (int i = 0; i < sentenceSet.size(); i++) {
             n = Integer.toString(i);
             speakerInput = speaker.get(i);
             sentenceInput = sentence.get(i);
+            sentence_id = sentenceSet.get(i).getSentenceId();
             
             //문장 별 설정 값들을 가져온다.
             voiceVal = request.getParameter("voiceVal" + n);;
@@ -91,30 +94,21 @@ public class setVoiceEmotion extends HttpServlet {
                   emotionId = emotionSet.get(j).getEmotionId();
                }
             }
-            int story_id = currStory.getStoryId();
             
-            // DB - Sentence 테이블에 삽입
-            SentenceDao.insertSent(con, sentenceInput, speakerInput, emotionId, voiceId, intensity, story_id);
-            
-            //List 형태로 Sentence 저장
-            Sentence invidSent = new Sentence();
-            invidSent.setSentence(sentenceInput);
-            invidSent.setSpeaker(speakerInput);
-            invidSent.setEmotionId(emotionId);
-            invidSent.setVoiceId(voiceId);
-            invidSent.setIntensity(intensity);
-            invidSent.setStoryId(story_id);
-            
-            sentenceSet.add(invidSent);
-            
+            // DB - Sentence 변경 값 업데이트
+            SentenceDao.updateSent(con, sentenceInput, speakerInput, emotionId, voiceId, intensity, sentence_id);
+            System.out.println(sentenceInput+"//"+speakerInput+"//"+emotionId+"//"+voiceId+"//"+intensity+"//"+sentence_id);
          }
-     
-      request.setAttribute("isBegan", 1);
-      request.setAttribute("playAll","false");
-      request.setAttribute("sentenceSet", sentenceSet);
-      RequestDispatcher rd = request.getRequestDispatcher("/makeJsonServlet");
-      rd.forward(request, response);
-      System.out.println("OK last");
+         sentenceSet.clear();
+         
+         sentenceSet = (ArrayList<Sentence>)SentenceDao.getSentenceList(con, currStory.getStoryId());
+         
+         request.setAttribute("isBegan", 1);
+         request.setAttribute("playAll","false");
+         request.setAttribute("sentenceSet", sentenceSet);
+         RequestDispatcher rd = request.getRequestDispatcher("/makeJsonServlet");
+         rd.forward(request, response);
+         System.out.println("OK last");
    }
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response)
