@@ -31,13 +31,7 @@
       ArrayList<String> speaker = (ArrayList<String>) session.getAttribute("speaker_list");
       ArrayList<String> speakerType = (ArrayList<String>) session.getAttribute("speakerType");
       ArrayList<String> sentence = (ArrayList<String>) request.getAttribute("sentence_list");
-      int speakerNum[][] = (int[][]) request.getAttribute("speakerNum");
-      
-      //DB의 Emotion, Voice 가져오기 + session에 저장 -> index.jsp에서 처리
-      /*ServletContext sc = getServletContext();
-      Connection con = (Connection)sc.getAttribute("DBconnection");
-      List<Voice> voiceSet = SettingDao.getVoice(con);
-      List<Emotion> emotionSet = SettingDao.getEmotion(con);*/
+      int speakerNum[][] = (int[][]) request.getAttribute("speakerNum");//용도?
       
       List<Voice> voiceSet = (List<Voice>)session.getAttribute("voiceSet");
       List<Emotion> emotionSet = (List<Emotion>)session.getAttribute("emotionSet");
@@ -284,6 +278,8 @@
          var voice_name = document.getElementById('voiceVal'+val).value;
          var emotion_name = document.getElementById('emotionVal'+val).value;
          var emotion_intensity = document.getElementById('intensityVal'+val).value;
+         var json_req_obj = {sentence : sentence, voice_name : voice_name, emotion_name : emotion_name, intensity : emotion_intensity.toString()};
+         alert(JSON.stringify(json_req_obj));
          console.log(val);
          
          console.log(document.getElementById('voiceVal'+val).value);
@@ -299,8 +295,8 @@
              }
          };
          xhttp.open("POST", "./getPreListen", true);
-         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; UTF-8");
-         xhttp.send("sentence="+sentence+"&voice_name="+voice_name+"&emotion_name="+emotion_name+"&intensity="+emotion_intensity.toString());
+         xhttp.setRequestHeader("Content-type", "application/json");
+         xhttp.send(JSON.stringify(json_req_obj));
       }
    </script>
    
