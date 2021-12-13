@@ -1,4 +1,4 @@
-package controller;
+package controller.makeStory;
 
 import java.io.File;
 import java.io.IOException;

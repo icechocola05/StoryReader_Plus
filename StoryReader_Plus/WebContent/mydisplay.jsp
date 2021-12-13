@@ -54,7 +54,7 @@
 			</button>
             <audio id='player' autoplay controls onended="javascript:next();">
             <%System.out.println(currStory.getStoryId()+"_"+currStory.getStoryName()+"_"+ "0"); %>
-               	<source id = "play-source" src="output/<%=currStory.getStoryId()+"_"+currStory.getStoryName()+"_"+ "0"%>.wav" type="audio/wav">
+               	<source id = "play-source" src="<%="/output/"+File.separator+currStory.getStoryId()+"_"+currStory.getStoryName()+"_"+ "0"%>.wav" type="audio/wav">
             </audio>
             <button type="submit" id="next_btn" onclick = "javascript:next_clicked();">
 				<img src="./Img/next_w.png" alt="image">
@@ -82,7 +82,7 @@
 	         nowNum = nowNum -1;
 	         var audio = document.getElementById('player');
 	         var source = document.getElementById('play-source');
-	         source.src = "output/" + story_id + "_" + story_name + "_" + nowNum.toString()+".wav";
+	         source.src = "/output/" + story_id + "_" + story_name + "_" + nowNum.toString()+".wav";
 	         
 	         var next_sentence = document.getElementById('sentence'+(nowNum+1).toString())
 	         next_sentence.style.backgroundColor = "#FFFFFF";
@@ -105,7 +105,7 @@
 	         nowNum = nowNum + 1;
 	         var audio = document.getElementById('player');
 	         var source = document.getElementById('play-source');
-	         source.src = "output/" + story_id + "_" + story_name + "_" + nowNum.toString()+".wav";
+	         source.src = "/output/" + story_id + "_" + story_name + "_" + nowNum.toString()+".wav";
 	         
 	         var pre_sentence = document.getElementById('sentence'+(nowNum-1).toString())
 	         pre_sentence.style.backgroundColor = "#FFFFFF";

@@ -53,7 +53,6 @@ public class TTSConnection extends HttpServlet {
 		request.setAttribute("isBegan", 1);
 		
 		if (index== resultJson.size()) {
-			//session.setAttribute("sentNum", -1);
 			session.setAttribute("selectedStory", currStory);
 			RequestDispatcher rd = request.getRequestDispatcher("/readScript");// 원래 경로 : /readScript
 			rd.forward(request, response);
@@ -63,7 +62,7 @@ public class TTSConnection extends HttpServlet {
 		}
 
 		try {
-			URL url = new URL("http://220.69.171.32:5000/tts"); // 음성합성기 URL 넣기
+			URL url = new URL("http://220.69.171.37:5000/tts"); // 음성합성기 URL 넣기
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Content-Type", "application/json; UTF-8");
@@ -88,8 +87,8 @@ public class TTSConnection extends HttpServlet {
 				int read = 0;
 				byte[] bytes = new byte[1024];
 				
-				String path = getServletContext().getRealPath("output/");// "C:"+File.separator+"StoryReader"+File.separator+"output";
-						
+				String path = "C:"+File.separator+"StoryReader_Plus"+File.separator+"output"; //getServletContext().getRealPath("output/"); 
+				
 	            System.out.println(path);
 	            request.setAttribute("path", path);
 
@@ -106,7 +105,6 @@ public class TTSConnection extends HttpServlet {
 				while ((read = is.read(bytes)) != -1) {
 					outputStream.write(bytes, 0, read); // wav 파일에 작성 
 				}
-				//db.updateWav(conn, story_id, index, audioFile);
 				
 				System.out.println("생성!");
 				outputStream.close();
@@ -121,7 +119,6 @@ public class TTSConnection extends HttpServlet {
 					response1.append(inputLine);
 				}
 				br.close();
-				//System.out.println(response1.toString());
 			}
 
 		} catch (Exception e) {

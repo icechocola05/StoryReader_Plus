@@ -290,7 +290,7 @@
            xhttp.onreadystatechange = function () {
              if (xhttp.readyState == 4 && xhttp.status == 200) {
                console.log(xhttp.responseText);
-                  document.getElementById("pre-listen-audio").src = "output/"+xhttp.responseText;
+                  document.getElementById("pre-listen-audio").src = "pre/"+xhttp.responseText;
                document.getElementById('player').load();
              }
          };
