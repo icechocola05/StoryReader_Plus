@@ -1,0 +1,122 @@
+@charset "UTF-8";	
+
+html,body {
+	background-color: #FFFFFF;
+}
+
+.head {
+	position: relative;
+	padding-top: 1.5%;
+	padding-bottom: 1.5%;
+	background: #97C6EE;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+.head .title-section{
+	float:center;
+	margin-right:-15%;
+}
+.head .user-section{
+	width:15%;
+	float:right;
+	font-size:25px;
+}
+.head .user-button{
+	padding:5px;
+}
+.head a{
+	color:white;
+	text-decoration:none;
+}
+.head a:hover{
+	color:white;
+	text-decoration:underline;
+}
+.head a.title-button{
+	font-family: Noto Sans CJK KR;
+	font-weight: bold;
+}
+.head a.user-button{
+	font-weight: normal;
+}
+.head span {
+	font-family: Noto Sans KR;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	line-height: 43px;
+	letter-spacing: -0.02em;
+	color: #FFFFFF;
+}
+.main {
+	background-color: #FFFFFF;
+}
+
+.prog {
+	width: 50%;
+	margin-left: 24%;
+	margin-top: 4%;
+	margin-bottom: 3%;
+	height: 10%;
+}
+
+
+
+.select {
+	width: 65%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.select span {
+	font-family: Noto Sans KR;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 30px;
+	line-height: 43px;
+	letter-spacing: -0.05em;
+	
+	color: #000000;
+	
+}
+
+.select .input_btn1 {
+	
+	margin-top: 5%;
+	width: inherit;
+	padding: 2% 15% 2% 15%;
+	background-color: #97C6EE;
+	border: none;
+	
+	font-family: Noto Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 33px;
+	line-height: 48px;
+	/* identical to box height */
+	
+	text-align: center;
+	
+	color: #FFFFFF;
+}
+
+.select .input_btn2 {
+	
+	margin-top: 5%;
+	width: inherit;
+	padding: 2% 20% 2% 20%;
+	background-color: #BBBBBB;;
+	border: none;
+	
+	font-family: Noto Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 33px;
+	line-height: 48px;
+	/* identical to box height */
+	
+	text-align: center;
+	
+	color: #FFFFFF;
+}
