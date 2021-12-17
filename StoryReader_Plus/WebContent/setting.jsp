@@ -73,16 +73,16 @@
    <form method="Post" action="setVoiceEmotion" >
       <div class="set">
          <div class="speakers" >
-            <div class="row">
+            <div class="w3-row">
                <% for(int i=0; i<speakerType.size(); i++) { %>
                   <!-- speaker 붙이기-->
-                  <div class="col-sm-3">
-                        <span id='speaker_type<%=i%>' class="fs-1"> <%= speakerType.get(i) %> </span>
+                  <div class="w3-col m4">
+                        <span id='speaker_type<%=i%>' class="w3-xlarge"> <%= speakerType.get(i) %> </span>
                   </div>
                   
                   <!-- voice option 붙이기-->
-                  <div class="col-sm-7">
-                     <select id='voiceType<%=i%>' class='form-select fs-2' name='voiceType<%=i%>' onchange="changeVoice(this.value, <%=i%>);">
+                  <div class="w3-col m8">
+                     <select id='voiceType<%=i%>' class='w3-select w3-large w3-margin-bottom' name='voiceType<%=i%>' onchange="changeVoice(this.value, <%=i%>);">
                         <% for(int j=0; j<voiceSet.size(); j++) { %>
                            <option value= <%=voiceSet.get(j).getVoiceName() + j%> style="background-color: #<%=voiceColorSet[j]%> "> <%=voiceSet.get(j).getVoiceKrName()%> </option>
                         <% } %>
@@ -101,29 +101,28 @@
          int len = sentence.size(); 
          for(int i=0; i<len; i++) { 
       %>
-         
-      <div class="container-fluid align-items-center" style="border:2px solid #C4C4C4; border-radius:20px; margin-bottom: 2%; padding :0% 1% 0% 1%;">
-         <div class="row justify-content-between align-items-center">
-         
+        
+      <div class="w3-container" style="border:2px solid #C4C4C4; border-radius:20px; margin-bottom: 2%; padding :0% 0.5% 0% 0.5%;">
+         <div class="w3-row w3-center">
             <!-- speaker 붙이기-->
-            <div class="col-1 text-center fs-1 fw-bold" style="color: #3A91DA;">
+            <div class="w3-col s2 w3-xlarge" style="color: #3A91DA; font-weight: bold; margin-top: 7%; width: 10%">
                <span id='speaker<%=i%>'> <%= speaker.get(i) %> </span>
             </div>
             
-            <div class="col-md-auto text-center" style="margin: 1%;">
+            <div class="w3-col s2 w3-cell-middle" style="margin: 1% 0.5% 1% 0.5%;">
                <!-- voice 붙이기 -->
-               <div class="voice<%=i%>" style="border:3px solid #EF9CA1; border-radius: 35%; background-color: #EF9CA1; width: 150%; height: 180%p; padding-top: 10%;" > 
+               <div class="voice<%=i%>" style="border:3px solid #EF9CA1; border-radius: 35%; background-color: #EF9CA1; width: 80%; height: 40%; padding-top: 10%;" > 
                   <input type="text" style="display:none;" id ="voiceVal<%=i%>" name="voiceVal<%=i%>" value="ema&nea">
                   <!-- emotion 붙이기-->
-                  <div class="col-md-auto text-center" style="margin: 1%;">
+                  <div class=" w3-center w3-cell-middle" style="margin: 1%;">
                      <label id="emotionFace<%=i%>"  style="opacity: 70%;">
                         <span id='emotionFaceSpan<%=i%>' class='iconify' data-inline='false' data-icon='noto:neutral-face'></span>
                      </label>
-                     <select class='form-select fs-2' id='emotion<%=i%>' name='emotion<%=i%>' onchange="changeEmotion(this.value)" style="width: 58%; margin-left: 20%; margin-bottom: 10%;">
+                     <select class='w3-select' id='emotion<%=i%>' name='emotion<%=i%>' onchange="changeEmotion(this.value)" style="width: 50%; margin-bottom: 10%;">
                               <% for (int ls=0; ls<emotionSet.size(); ls++)  { %> 
                                  <option value=<%= emotionSet.get(ls).getEmotionName() + i%>><%= emotionSet.get(ls).getEmotionKrName() %></option>
                               <% } %>
-                         </select>
+                         </select>	
                          <input type="text" style="display:none;" id ="emotionVal<%=i%>" name="emotionVal<%=i%>" value="neutral">
                      
                   </div>
@@ -131,18 +130,18 @@
             </div>
             
             <!-- emotion intensity 붙이기-->
-            <div class="col-1 text-center" style="margin: 2%;">
-               <input type="range" name="intensity<%=i%>" min="0" max ="1" step="0.1" value="0.5" onchange="changeIntensity(this.value, <%=i%>)">
+            <div class="w3-col s1 w3-display-container" style="margin-top: 8%;">
+               <input type="range" class="w3-display-middle" name="intensity<%=i%>" min="0" max ="1" step="0.1" value="0.5" onchange="changeIntensity(this.value, <%=i%>)">
                <input type="text" style="display:none;" id ="intensityVal<%=i%>" name="intensityVal<%=i%>" value="0.5">
             </div>
             
             <!-- sentence 붙이기-->
-            <div class="col-5 text-center"style="margin: 1%;" >
-               <textarea id="sentence<%=i%>" class="col-7 form-control fs-1" name="sentence<%=i%>"><%= sentence.get(i) %></textarea>
+            <div class="w3-col s4" style="margin: 5% 0% 0% 2%; width: 50%" >
+               <textarea id="sentence<%=i%>" class="w3-col s12 w3-xlarge" name="sentence<%=i%>"><%= sentence.get(i) %></textarea>
             </div>
             
             <!-- 미리듣기 버튼 붙이기 -->
-            <div class="col-1 text-center" style="margin: 1%;">
+            <div class="w3-col s1" style="margin: 1%;">
                <button type="button" id="pre-listen" value="미리듣기" onclick="getPreListen(<%=i%>); return false;">
                   <img id="pre-listen-img" src="./Img/play-button.png" alt="image">
                </button>
