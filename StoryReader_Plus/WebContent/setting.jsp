@@ -102,7 +102,7 @@
          for(int i=0; i<len; i++) { 
       %>
         
-      <div class="w3-container" style="border:2px solid #C4C4C4; border-radius:20px; margin-bottom: 2%; padding :0% 0.5% 0% 0.5%;">
+      <div class="w3-container" style="border:2px solid #C4C4C4; border-radius:20px; margin-bottom: 2%;">
          <div class="w3-row w3-center">
             <!-- speaker 붙이기-->
             <div class="w3-col s2 w3-xlarge" style="color: #3A91DA; font-weight: bold; margin-top: 7%; width: 10%">
@@ -130,7 +130,7 @@
             </div>
             
             <!-- emotion intensity 붙이기-->
-            <div class="w3-col s1 w3-display-container" style="margin-top: 8%;">
+            <div class="w3-col s1 w3-display-container" style="margin: 8% 1% 0 1%;">
                <input type="range" class="w3-display-middle" name="intensity<%=i%>" min="0" max ="1" step="0.1" value="0.5" onchange="changeIntensity(this.value, <%=i%>)">
                <input type="text" style="display:none;" id ="intensityVal<%=i%>" name="intensityVal<%=i%>" value="0.5">
             </div>
@@ -141,7 +141,7 @@
             </div>
             
             <!-- 미리듣기 버튼 붙이기 -->
-            <div class="w3-col s1" style="margin: 1%;">
+            <div class="w3-col s1 w3-cell-middle" style="margin: 6% 0 0 1%; ">
                <button type="button" id="pre-listen" value="미리듣기" onclick="getPreListen(<%=i%>); return false;">
                   <img id="pre-listen-img" src="./Img/play-button.png" alt="image">
                </button>
@@ -151,8 +151,8 @@
          <% } //for문: 문장 수 %>
        </div>
          
-      <div class="row justify-content-between align-items-center">
-         <div class="audio" style="width: 70%;" >
+      <div class="w3-center w3-cell-middle">
+         <div class="audio" style="width: 100%;" >
             <audio id='player' autoplay controls style="width: 100%">
                   <source id = "pre-listen-audio" src="" type="audio/wav;">
             </audio>

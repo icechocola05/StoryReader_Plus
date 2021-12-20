@@ -38,7 +38,7 @@ public class DBConnectionManager implements ServletContextListener {
 		connectionProps.put("serverTimezone", DBTimeZone);
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(DBUrl, connectionProps);
 			System.out.println("success DB Connection!");
 		} catch (SQLException | ClassNotFoundException e) {
