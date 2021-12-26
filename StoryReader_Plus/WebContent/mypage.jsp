@@ -42,8 +42,7 @@
        <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <%
-           
-         ArrayList<Story> myStory = (ArrayList<Story>)session.getAttribute("myStoryList");
+         ArrayList<Story> myStory = (ArrayList<Story>)session.getAttribute("myStoryList");//내 스토리 리스트 받아오기
          for (int i=0;i< myStory.size();i++){
          %>
       <form method="Post" action="readMyScript">

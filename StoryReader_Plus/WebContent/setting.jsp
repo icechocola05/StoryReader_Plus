@@ -5,9 +5,9 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%@ page import="dao.*"%>
-<%@ page import="dto.*"%>
+   pageEncoding="UTF-8" %>
+<%@ page import="dao.*" %>
+<%@ page import="dto.*" %>
 <%@ page import="model.*"%>
 <%@ page import="java.sql.*" %>
 
@@ -271,38 +271,32 @@
       }
 
       
-      function getPreListen(val){  //TTS server에 한 문장에 대한 json 파일을 만들어 input 전송
-      
+      //한 문장에 대한 json 파일 생성 -> TTS Server로 request(json object) 전송 -> 미리듣기 음성 파일을 저장한 이름을 response로 받아와 재생
+      function getPreListen(val){  
     	 const xhttp = new XMLHttpRequest();
       	 
-         //
+         //json object[문장, 음색, 감정, 감정세기] 정보
          var sentence = document.getElementById('sentence'+val).value;  
          var voice_name = document.getElementById('voiceVal'+val).value;
          var emotion_name = document.getElementById('emotionVal'+val).value;
          var emotion_intensity = document.getElementById('intensityVal'+val).value;
          
+       	 //TTS Server의 input인 json object 생성
          var json_req_obj = {sentence : sentence, voice_name : voice_name, emotion_name : emotion_name, 
-        		 intensity : emotion_intensity.toString()}; //TTS Server를 
-         //alert(JSON.stringify(json_req_obj)); 
+        		 intensity : emotion_intensity.toString()}; 
          console.log(val);
-         
-         console.log(document.getElementById('voiceVal'+val).value);
-         console.log(document.getElementById('emotionVal'+val).value);
-         console.log(document.getElementById('intensityVal'+val).value);
-         
-         console.log("sentence="+sentence+"&voice_name="+voice_name+"&emotion_name="+emotion_name+"&intensity="+emotion_intensity.toString());
          
          xhttp.onreadystatechange = function () {
              if (xhttp.readyState == 4 && xhttp.status == 200) {
-               console.log(xhttp.responseText);
-                  document.getElementById("pre-listen-audio").src = "pre/"+xhttp.responseText;
-               document.getElementById('player').load();
+				console.log(xhttp.responseText);//TTS 서버로부터 받아온 response(미리듣기 wav 파일의 이름)
+				document.getElementById("pre-listen-audio").src = "pre/"+xhttp.responseText;//response -> src 설정
+				document.getElementById('player').load();//미리듣기 음성 파일 재생
              }
          };
          
          xhttp.open("POST", "./getPreListen", true);
          xhttp.setRequestHeader("Content-type", "application/json");
-         xhttp.send(JSON.stringify(json_req_obj));
+         xhttp.send(JSON.stringify(json_req_obj)); // application/json 형식으로 request
       }
    </script>
    
