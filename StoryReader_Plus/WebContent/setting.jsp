@@ -73,16 +73,16 @@
    <form method="Post" action="setVoiceEmotion" >
       <div class="set">
          <div class="speakers" >
-            <div class="row">
+            <div class="w3-row">
                <% for(int i=0; i<speakerType.size(); i++) { %>
                   <!-- speaker 붙이기-->
-                  <div class="col-sm-3">
-                        <span id='speaker_type<%=i%>' class="fs-1"> <%= speakerType.get(i) %> </span>
+                  <div class="w3-col m4">
+                        <span id='speaker_type<%=i%>' class="w3-xlarge"> <%= speakerType.get(i) %> </span>
                   </div>
                   
                   <!-- voice option 붙이기-->
-                  <div class="col-sm-7">
-                     <select id='voiceType<%=i%>' class='form-select fs-2' name='voiceType<%=i%>' onchange="changeVoice(this.value, <%=i%>);">
+                  <div class="w3-col m8">
+                     <select id='voiceType<%=i%>' class='w3-select w3-large w3-margin-bottom' name='voiceType<%=i%>' onchange="changeVoice(this.value, <%=i%>);">
                         <% for(int j=0; j<voiceSet.size(); j++) { %>
                            <option value= <%=voiceSet.get(j).getVoiceName() + j%> style="background-color: #<%=voiceColorSet[j]%> "> <%=voiceSet.get(j).getVoiceKrName()%> </option>
                         <% } %>
@@ -101,29 +101,28 @@
          int len = sentence.size(); 
          for(int i=0; i<len; i++) { 
       %>
-         
-      <div class="container-fluid align-items-center" style="border:2px solid #C4C4C4; border-radius:20px; margin-bottom: 2%; padding :0% 1% 0% 1%;">
-         <div class="row justify-content-between align-items-center">
-         
+        
+      <div class="w3-container" style="border:2px solid #C4C4C4; border-radius:20px; margin-bottom: 2%;">
+         <div class="w3-row w3-center">
             <!-- speaker 붙이기-->
-            <div class="col-1 text-center fs-1 fw-bold" style="color: #3A91DA;">
+            <div class="w3-col s2 w3-xlarge" style="color: #3A91DA; font-weight: bold; margin-top: 7%; width: 10%">
                <span id='speaker<%=i%>'> <%= speaker.get(i) %> </span>
             </div>
             
-            <div class="col-md-auto text-center" style="margin: 1%;">
+            <div class="w3-col s2 w3-cell-middle" style="margin: 1% 0.5% 1% 0.5%;">
                <!-- voice 붙이기 -->
-               <div class="voice<%=i%>" style="border:3px solid #EF9CA1; border-radius: 35%; background-color: #EF9CA1; width: 150%; height: 180%p; padding-top: 10%;" > 
+               <div class="voice<%=i%>" style="border:3px solid #EF9CA1; border-radius: 35%; background-color: #EF9CA1; width: 80%; height: 40%; padding-top: 10%;" > 
                   <input type="text" style="display:none;" id ="voiceVal<%=i%>" name="voiceVal<%=i%>" value="ema&nea">
                   <!-- emotion 붙이기-->
-                  <div class="col-md-auto text-center" style="margin: 1%;">
+                  <div class=" w3-center w3-cell-middle" style="margin: 1%;">
                      <label id="emotionFace<%=i%>"  style="opacity: 70%;">
                         <span id='emotionFaceSpan<%=i%>' class='iconify' data-inline='false' data-icon='noto:neutral-face'></span>
                      </label>
-                     <select class='form-select fs-2' id='emotion<%=i%>' name='emotion<%=i%>' onchange="changeEmotion(this.value)" style="width: 58%; margin-left: 20%; margin-bottom: 10%;">
+                     <select class='w3-select' id='emotion<%=i%>' name='emotion<%=i%>' onchange="changeEmotion(this.value)" style="width: 50%; margin-bottom: 10%;">
                               <% for (int ls=0; ls<emotionSet.size(); ls++)  { %> 
                                  <option value=<%= emotionSet.get(ls).getEmotionName() + i%>><%= emotionSet.get(ls).getEmotionKrName() %></option>
                               <% } %>
-                         </select>
+                         </select>   
                          <input type="text" style="display:none;" id ="emotionVal<%=i%>" name="emotionVal<%=i%>" value="neutral">
                      
                   </div>
@@ -131,18 +130,18 @@
             </div>
             
             <!-- emotion intensity 붙이기-->
-            <div class="col-1 text-center" style="margin: 2%;">
-               <input type="range" name="intensity<%=i%>" min="0" max ="1" step="0.1" value="0.5" onchange="changeIntensity(this.value, <%=i%>)">
+            <div class="w3-col s1 w3-display-container" style="margin: 8% 1% 0 1%;">
+               <input type="range" class="w3-display-middle" name="intensity<%=i%>" min="0" max ="1" step="0.1" value="0.5" onchange="changeIntensity(this.value, <%=i%>)">
                <input type="text" style="display:none;" id ="intensityVal<%=i%>" name="intensityVal<%=i%>" value="0.5">
             </div>
             
             <!-- sentence 붙이기-->
-            <div class="col-5 text-center"style="margin: 1%;" >
-               <textarea id="sentence<%=i%>" class="col-7 form-control fs-1" name="sentence<%=i%>"><%= sentence.get(i) %></textarea>
+            <div class="w3-col s4" style="margin: 5% 0% 0% 2%; width: 50%" >
+               <textarea id="sentence<%=i%>" class="w3-col s12 w3-xlarge" name="sentence<%=i%>"><%= sentence.get(i) %></textarea>
             </div>
             
             <!-- 미리듣기 버튼 붙이기 -->
-            <div class="col-1 text-center" style="margin: 1%;">
+            <div class="w3-col s1 w3-cell-middle" style="margin: 6% 0 0 1%; ">
                <button type="button" id="pre-listen" value="미리듣기" onclick="getPreListen(<%=i%>); return false;">
                   <img id="pre-listen-img" src="./Img/play-button.png" alt="image">
                </button>
@@ -152,8 +151,8 @@
          <% } //for문: 문장 수 %>
        </div>
          
-      <div class="row justify-content-between align-items-center">
-         <div class="audio" style="width: 70%;" >
+      <div class="w3-center w3-cell-middle">
+         <div class="audio" style="width: 100%;" >
             <audio id='player' autoplay controls style="width: 100%">
                   <source id = "pre-listen-audio" src="" type="audio/wav;">
             </audio>
@@ -165,7 +164,7 @@
       </div>
    </form>
    <br>
-   
+
    <script>
       function changeVoice(val, tar) {
          //tar = speaker 인덱스
@@ -272,14 +271,19 @@
       }
 
       
-      function getPreListen(val){
-         const xhttp = new XMLHttpRequest();
-         var sentence = document.getElementById('sentence'+val).value;
+      function getPreListen(val){  //TTS server에 한 문장에 대한 json 파일을 만들어 input 전송
+      
+    	 const xhttp = new XMLHttpRequest();
+      	 
+         //
+         var sentence = document.getElementById('sentence'+val).value;  
          var voice_name = document.getElementById('voiceVal'+val).value;
          var emotion_name = document.getElementById('emotionVal'+val).value;
          var emotion_intensity = document.getElementById('intensityVal'+val).value;
-         var json_req_obj = {sentence : sentence, voice_name : voice_name, emotion_name : emotion_name, intensity : emotion_intensity.toString()};
-         alert(JSON.stringify(json_req_obj));
+         
+         var json_req_obj = {sentence : sentence, voice_name : voice_name, emotion_name : emotion_name, 
+        		 intensity : emotion_intensity.toString()}; //TTS Server를 
+         //alert(JSON.stringify(json_req_obj)); 
          console.log(val);
          
          console.log(document.getElementById('voiceVal'+val).value);
@@ -287,13 +291,15 @@
          console.log(document.getElementById('intensityVal'+val).value);
          
          console.log("sentence="+sentence+"&voice_name="+voice_name+"&emotion_name="+emotion_name+"&intensity="+emotion_intensity.toString());
-           xhttp.onreadystatechange = function () {
+         
+         xhttp.onreadystatechange = function () {
              if (xhttp.readyState == 4 && xhttp.status == 200) {
                console.log(xhttp.responseText);
                   document.getElementById("pre-listen-audio").src = "pre/"+xhttp.responseText;
                document.getElementById('player').load();
              }
          };
+         
          xhttp.open("POST", "./getPreListen", true);
          xhttp.setRequestHeader("Content-type", "application/json");
          xhttp.send(JSON.stringify(json_req_obj));

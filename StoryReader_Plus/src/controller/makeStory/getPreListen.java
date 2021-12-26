@@ -35,7 +35,7 @@ public class getPreListen extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//한글 인코딩
+		
 		response.setContentType("text/html; charset=UTF-8");
 	    request.setCharacterEncoding("UTF-8");
 		
@@ -45,7 +45,7 @@ public class getPreListen extends HttpServlet {
 	    	BufferedReader reader = request.getReader();
 	    	while ((line = reader.readLine()) != null)
 	    		jb.append(line);
-	    } catch (Exception e) {/* report an error */ }
+	    } catch (Exception e) {}
 	    				
 	    JSONParser parser = new JSONParser();
 	    JSONObject obj;
@@ -58,7 +58,6 @@ public class getPreListen extends HttpServlet {
 		    intensityVal = obj.get("intensity").toString();
 		    
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	    	
@@ -134,8 +133,6 @@ public class getPreListen extends HttpServlet {
 				outputStream.close();
 				is.close();	
 				
-				response.setContentType("text/plain");
-				response.setCharacterEncoding("UTF-8");
 				response.getWriter().write(FileName);
 			}
 

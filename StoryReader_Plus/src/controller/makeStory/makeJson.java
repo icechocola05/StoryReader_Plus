@@ -20,9 +20,6 @@ import dto.Story;
 import dto.Voice;
 import dto.Emotion;
 
-/**
- * Servlet implementation class makeJson
- */
 @WebServlet("/makeJsonServlet")
 public class makeJson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -91,7 +88,6 @@ public class makeJson extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

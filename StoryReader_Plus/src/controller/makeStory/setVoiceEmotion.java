@@ -72,7 +72,6 @@ public class setVoiceEmotion extends HttpServlet {
     	  currStory = StoryDao.insertStory(con, currStory.getStoryName(), currUser.getUserId());
     	  session.setAttribute("currStory", currStory);
       } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
       }
          
@@ -98,11 +97,13 @@ public class setVoiceEmotion extends HttpServlet {
               voiceId = voiceSet.get(j).getVoiceId();
            }
         }
+        
         for(int j=0; j<emotionSet.size(); j++) {
            if(emotionSet.get(j).getEmotionName().equals(emotionVal)) {
               emotionId = emotionSet.get(j).getEmotionId();
            }
         }
+        
         int story_id = currStory.getStoryId();
         
         // DB - Sentence 테이블에 삽입
@@ -131,7 +132,6 @@ public class setVoiceEmotion extends HttpServlet {
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
-      // TODO Auto-generated method stub
       doGet(request, response);
    }
 

@@ -65,7 +65,6 @@ public class SentenceDao {
 		   try {
 				pstmt.close();
 			} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					System.out.println("failed2");
 			} 
@@ -95,7 +94,6 @@ public class SentenceDao {
 			if(pstmt != null) {try {
 				pstmt.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} }
 		}

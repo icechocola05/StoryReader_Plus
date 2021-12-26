@@ -27,24 +27,14 @@ import dto.Story;
 import dto.Voice;
 import dto.Emotion;
 
-/**display.jsp를 개발하는 동안엔 사용안함
- * Servlet implementation class setImg
- */
 @WebServlet("/readScript")
 public class readScript extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public readScript() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// for DB connection

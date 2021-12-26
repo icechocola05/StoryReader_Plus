@@ -20,24 +20,13 @@ import dto.Sentence;
 import dto.Story;
 import dto.Voice;
 
-/**
- * Servlet implementation class EditStory
- */
 @WebServlet("/EditStory")
 public class EditStory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public EditStory() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// for DB connection
 	       ServletContext sc = getServletContext();
@@ -136,12 +125,7 @@ public class EditStory extends HttpServlet {
 
 	      
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
