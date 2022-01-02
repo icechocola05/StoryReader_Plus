@@ -19,6 +19,7 @@
 		<div class="input">
 			<span id="header">텍스트를 직접 입력해주세요!</span> <br>
 			
+			<!-- 텍스트 입력하면 title, mainTxt가 POST 방식으로 confirmScript에 전송 -->
 			<div class="content">
 				<form method="Post" action="confirmScript">	
 					<div class="context-text">

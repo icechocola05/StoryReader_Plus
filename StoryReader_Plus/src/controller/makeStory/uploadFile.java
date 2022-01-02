@@ -20,6 +20,7 @@ import com.oreilly.servlet.MultipartRequest;
 @WebServlet("/uploadFile")
 public class uploadFile extends HttpServlet {
 
+	//텍스트 파일 서버 저장 준비 (필요한 URL 미리 정의)
 	private static final long serialVersionUID = 1L;
 	private static final String ATTACHES_DIR = "C:\\attaches";
  
@@ -41,18 +42,20 @@ public class uploadFile extends HttpServlet {
     	MultipartRequest multipartRequest = new MultipartRequest(request, ATTACHES_DIR, maxSize, encType,
     	    	new DefaultFileRenamePolicy());
 
-    	File file = multipartRequest.getFile("file"); //업로드한 파일 file 객체로 받기
+    	//업로드한 파일 file 객체로 받기
+    	File file = multipartRequest.getFile("file");
     	
-    	String str="";
-		String title = "";
-		String mainTxt="";
+    	//변수 선언
+    	String str=""; //반복문 돌면서 받을 문장
+		String title = ""; //제목
+		String mainTxt=""; //전체 본문
 	
 		try {
 			//텍스트 파일 문장으로 읽기
 			FileInputStream ins = new FileInputStream(file);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(ins, "UTF-8"));
 			
-			int len=0; //첫 문장인지 판별
+			int len=0; //첫 문장인지 판별하는 변수
 			while(true) {
 				str = reader.readLine();
 				
@@ -60,7 +63,7 @@ public class uploadFile extends HttpServlet {
 				
 				if(len == 0) // 첫 문장은 제목
 					title = str;
-				else
+				else //본문이라면 mainTxt에 계속 붙이기
 					mainTxt+=str+"\n";
 				len++;
 			}
@@ -72,8 +75,8 @@ public class uploadFile extends HttpServlet {
 		}
 		
 		
-		request.setAttribute("title", title); //책 제목
-		request.setAttribute("mainTxt", mainTxt); //책 본문
+		request.setAttribute("title", title); //책 제목 전송
+		request.setAttribute("mainTxt", mainTxt); //책 본문 전송
 		
     	RequestDispatcher rd = request.getRequestDispatcher("/confirmFile.jsp");
         rd.forward(request, response);

@@ -7,94 +7,11 @@
 <%@ include file="head.html" %>
 <head>
 	<link rel="stylesheet" href="CSS/textInput.css">
-	<style>
-		 #modal.modal-overlay {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(1.5px);
-            -webkit-backdrop-filter: blur(1.5px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        #modal .modal-window {
-            background: rgba( 69, 139, 197, 0.9 );
-            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-			backdrop-filter: blur( 13.5px );
-            -webkit-backdrop-filter: blur( 13.5px );
-            border-radius: 10px;
-            border: 1px solid rgba( 255, 255, 255, 0.18 );
-            width: 30%;
-            height: 50%;
-            position: relative;
-            top: -100px;
-            padding: 1%;
-        }
-        #modal .modal-title {
-            display: inline;
-            text-shadow: 1px 1px 2px gray;
-            color: white;
-            
-        }
-        #modal .modal-title h3 {
-            display: inline;
-            font-weight: bold;
-        }
-        #modal .close-area {
-            display: inline;
-            float: right;
-            padding-right: 10px;
-            cursor: pointer;
-            text-shadow: 1px 1px 2px gray;
-            color: white;
-        }
-        
-        #modal .content {
-            margin-top: 20px;
-            padding: 0px 10px;
-            text-shadow: 1px 1px 2px gray;
-            color: white;
-            font-size:20px;
-        }
-        #modal .content .sentence-examples{
-       		 border-radius: 5px;
-        }
-        #modal .content #ex-1{
-        	width:60%;
-        	height:15%;
-        }
-        #modal .content #ex-2{
-        	width:70%;
-        	height:15%;
-        }
-        #btn-modal{
-        	margin:1%;
-        	border:none;
-        	border-radius: 50%;
-        	width:40px;
-        	height:40px;
-        	color:white;
-        	background-color:#A7D6FE;
-        }
-        #btn-modal:hover:before{
-        }
-        #btn-modal:hover{
-        	background-color: #97C6EE;
-        }
-	</style>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<%
-		//텍스트 전달받기
+		//제목, 전체 본문 전달받기
 		String title = "";
 		String mainTxt = "";
 		if(request.getAttribute("title") != null) title = (String) request.getAttribute("title");
@@ -102,12 +19,14 @@
 	 %>
 	<div class="main">
 		<div>
+			<!-- progressive bar image -->
 			<img class="prog" src="./Img/2.png" alt="image">
 		</div>
 		
 		<div class="input">
 			<span id="header">텍스트를 확인해주세요!<button id="btn-modal">?</button></span> <br>
 			
+			<!-- 파일로 등록한 내용을 확인 및 수정 가능 -->
 			<div class="content">
 				<form method="Post" action="confirmScript">	
 					<div class="context-text">
@@ -122,6 +41,7 @@
 			</div>
 		</div>
 		
+		<!-- modal로 텍스트 파일 작성 예시 설명 -->
 		<div id="modal" class="modal-overlay">
         	<div class="modal-window">
             	<div class="modal-title">

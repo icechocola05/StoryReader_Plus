@@ -31,8 +31,9 @@
       ArrayList<String> speaker = (ArrayList<String>) session.getAttribute("speaker_list");
       ArrayList<String> speakerType = (ArrayList<String>) session.getAttribute("speakerType");
       ArrayList<String> sentence = (ArrayList<String>) request.getAttribute("sentence_list");
-      int speakerNum[][] = (int[][]) request.getAttribute("speakerNum");//용도?
+      int speakerNum[][] = (int[][]) request.getAttribute("speakerNum");
       
+      //음색 종류와 감정 종류 받아오기(chooseInput에서 session에 저장했었음)
       List<Voice> voiceSet = (List<Voice>)session.getAttribute("voiceSet");
       List<Emotion> emotionSet = (List<Emotion>)session.getAttribute("emotionSet");
       

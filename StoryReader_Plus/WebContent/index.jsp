@@ -2,25 +2,20 @@
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<%@ include file="head.html" %>
 <head>
-<meta charset="EUC-KR">
-<title>Story Reader</title>
-
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/index.css">   
 </head>
 <body>
-   <div class="top">
-      <div class="sub">당신의 이야기를 읽어드릴게요</div>
-      <div class="title">Story Reader</div>
-      <button onclick="location='chooseInput.jsp'">Story Reader Start  > </button>
-      <button onclick="location='explain.jsp'"style="background-color:#C4C4C4">Story Reader Help  > </button>
-   </div>
-   <div class="img">
-      <img alt="faces" src="Img/faces.png" class="faces">
-   </div>
-   
+	<!-- 시작 화면 -->
+	<div class="top">
+		<div class="sub">당신의 이야기를 읽어드릴게요</div>
+		<div class="title">Story Reader</div>
+		<button onclick="location='chooseInput.jsp'">Story Reader Start  > </button> <!-- 시작 버튼 -->
+		<button class="help_btn" onclick="location='explain.jsp'">Story Reader Help  > </button> <!-- 설명 버튼 -->
+	</div>
+	<div class="img">
+		<img alt="faces" src="Img/faces.png" class="faces">
+	</div>
 </body>
 </html>
