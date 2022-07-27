@@ -5,7 +5,8 @@
 
 [이용 가이드🕹](https://www.notion.so/4aff97ea916a468c9fa8bf2f8122e521)
 <br></br>
-<div align="center"><img src="https://user-images.githubusercontent.com/68148196/181292041-a6ce6945-fbe0-432a-b890-677b172fc905.png" width=700 height=350></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/68148196/181388234-f6bd1dcb-e5ef-4d8f-8959-5a483f62a67b.png" width=700 height=350></div>
+
 
 <br></br>
 <br></br>
