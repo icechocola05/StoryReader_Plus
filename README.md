@@ -2,7 +2,8 @@
 # 📖 StoryReader_Plus 📖
 이미지로부터 텍스트를 추출하는 Google Vision API와 감정과 음색을 다양하게 설정할 수 있는 TTS를 이용하여 동화책을 읽어주는 웹 서비스입니다. 
 원하는 동화책의 사진을 찍고, 화자와 감정을 설정하여 동화를 읽어보세요.
-([이용 가이드🕹](https://www.notion.so/4aff97ea916a468c9fa8bf2f8122e521))
+
+[이용 가이드🕹](https://www.notion.so/4aff97ea916a468c9fa8bf2f8122e521)
 <br></br>
 <div align="center"><img src="https://user-images.githubusercontent.com/68148196/181292041-a6ce6945-fbe0-432a-b890-677b172fc905.png" width=700 height=350></div>
 
