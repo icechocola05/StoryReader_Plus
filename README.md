@@ -20,6 +20,17 @@
 <br></br>
 
 ## ✏ 핵심 기능 
+✔ 동화 페이지 별 등록
+
+✔ 동화 페이지 사진 등록 시 문장 추출
+
+✔ 문장 별 화자(음색), 감정 설정
+
+✔ 설정한 목소리와 감정으로 동화 낭독
+
+✔ 동화 저장 및 수정/삭제
+
+<!--
 ✔ 동화 페이지 별 등록<br></br>
   <div align="center"><img src="https://user-images.githubusercontent.com/68148196/181300809-b4932745-9b32-465e-a66b-eda3b5253530.jpg" width=500 height=280></div>
   <br></br>
@@ -35,7 +46,7 @@
   <br></br>
 ✔ 동화 저장 및 수정/삭제<br></br>
   <div align="center"><img src="https://user-images.githubusercontent.com/68148196/181301904-e0d227b1-2899-48eb-8908-2de5efd68a87.jpg" width=600 height=200></div>
-
+-->
 <br></br>
 <br></br>
 
