@@ -69,11 +69,14 @@
 <br></br>
 
 ##  📅 DB ERD
+<div align="center"><img src="https://user-images.githubusercontent.com/68148196/181388586-269b0adc-8dfc-405d-b13d-0823f7dddf42.png" width=800 height=320></div>
 
 <br></br>
 <br></br>
 
 ##  ✨ 개선/발전 방향
+✔ 사용자가 직접 음성 파일 추가
 
+✔ 서비스 내에서 이용 가능한 이미지 제공
 
 
