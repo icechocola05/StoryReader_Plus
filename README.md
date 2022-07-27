@@ -12,7 +12,7 @@
 ## 🚀 Contributor
 | 이성민 | 이지원 |
 | ------ | ------ |
-| 개인 이미지 넣기 | <img src="https://user-images.githubusercontent.com/68148196/181294932-e130fac7-02ef-416d-a879-96dae785a061.png" width=300 height=300 > |
+| 개인 이미지 넣기 | <div align="center"><img src="https://user-images.githubusercontent.com/68148196/181294932-e130fac7-02ef-416d-a879-96dae785a061.png" width=300 height=300 ></div> |
 | [@icechocola05](https://github.com/icechocola05) | [@jioniy](https://github.com/jioniy) |
 | 기획, DB 설계, TTS 연동, Google Vision API 연동, DBCP 연동, 웹 개발, 배포 | 기획, DB 설계, TTS 연동, DBCP 연동, 웹 개발, 배포 |
 
